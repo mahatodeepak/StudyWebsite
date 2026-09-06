@@ -4,298 +4,592 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyHub - Online Learning</title>
+<title>StudyHub - Learn. Study. Succeed.</title>
 
 <style>
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+    font-family: Arial, sans-serif;
+    background: #f7fbff;
+    color: #123f70;
 }
 
 /* HEADER */
 header {
-  background: #ffffff;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+    background: linear-gradient(135deg, #07549a, #0d6fc4);
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .logo {
-  font-size: 23px;
-  font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.logo span {
-  margin-right: 6px;
+.logo-icon {
+    font-size: 42px;
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.logo-text span {
+    color: #ffc400;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffd000;
 }
 
 .login-buttons {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 12px;
 }
 
-.login-buttons button {
-  border: none;
-  padding: 9px 13px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.student-btn {
-  background: #2563eb;
-  color: white;
+.login-btn {
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .teacher-btn {
-  background: #16a34a;
-  color: white;
+    background: #12b85a;
+    border-color: #12b85a;
+}
+
+.login-btn:hover {
+    transform: scale(1.03);
 }
 
 /* HERO */
 .hero {
-  text-align: center;
-  padding: 55px 20px;
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
-  color: white;
+    min-height: 330px;
+    padding: 50px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: linear-gradient(120deg, #eef9ff, #ffffff);
+}
+
+.hero-text {
+    max-width: 650px;
 }
 
 .hero h1 {
-  font-size: 34px;
-  margin-bottom: 12px;
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    color: #174c82;
+}
+
+.hero h1 .blue {
+    color: #1684e8;
+}
+
+.hero h1 .green {
+    color: #12a85b;
+}
+
+.hero h2 {
+    font-size: 27px;
+    margin-bottom: 22px;
 }
 
 .hero p {
-  font-size: 17px;
-  max-width: 650px;
-  margin: auto;
-  line-height: 1.6;
+    font-size: 19px;
+    line-height: 1.6;
 }
 
-/* COURSE CONTENT */
-.about {
-  max-width: 900px;
-  margin: 35px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.about h2 {
-  margin-bottom: 12px;
-}
-
-.about p {
-  line-height: 1.6;
-  color: #555;
+.hero-image {
+    font-size: 145px;
+    text-align: center;
+    min-width: 300px;
 }
 
 /* COURSES */
+.courses-section {
+    padding: 45px 4%;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 42px;
+    color: #174c82;
+}
+
+.section-title p {
+    font-size: 19px;
+    margin-top: 8px;
+    color: #3974a8;
+}
+
 .courses {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1450px;
+    margin: auto;
 }
 
-.courses h2 {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 18px;
-}
-
+/* COURSE CARD */
 .course-card {
-  background: white;
-  padding: 25px 15px;
-  text-align: center;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  cursor: pointer;
-  transition: transform 0.2s;
+    border-radius: 18px;
+    padding: 25px 15px;
+    text-align: center;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
 }
 
 .course-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.upper {
+    background: #e6f6ff;
+    border-bottom: 8px solid #1499ed;
+}
+
+.ixx {
+    background: #f0ecff;
+    border-bottom: 8px solid #8061e8;
+}
+
+.xixii {
+    background: #e8fff1;
+    border-bottom: 8px solid #18bd83;
+}
+
+.ssc {
+    background: #fff7e6;
+    border-bottom: 8px solid #ffbd28;
+}
+
+.net {
+    background: #fff0f5;
+    border-bottom: 8px solid #ff5791;
 }
 
 .course-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    margin-bottom: 15px;
 }
 
 .course-card h3 {
-  margin-bottom: 8px;
+    font-size: 24px;
+    color: #124b82;
+    margin-bottom: 8px;
 }
 
-.course-card p {
-  font-size: 14px;
-  color: #666;
+.course-card .subtitle {
+    font-size: 17px;
+    color: #3974a8;
+    margin-bottom: 10px;
 }
 
-.free {
-  display: inline-block;
-  margin-top: 12px;
-  background: #dcfce7;
-  color: #15803d;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
+.course-card .description {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #315d80;
+    min-height: 48px;
+}
+
+/* FREE CHAPTER BADGE */
+.free-badge {
+    background: #c9f7d8;
+    color: #098346;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.free-badge span {
+    font-size: 18px;
 }
 
 /* FOOTER */
 footer {
-  margin-top: 50px;
-  background: #111827;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
+    background: #174d7c;
+    color: white;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
 
 footer p {
-  font-size: 14px;
-  color: #d1d5db;
+    font-size: 15px;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+
+    .courses {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
-  header {
-    padding: 12px;
-  }
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
 
-  .logo {
-    font-size: 19px;
-  }
+    .logo-text {
+        font-size: 27px;
+    }
 
-  .login-buttons button {
-    padding: 7px 9px;
-    font-size: 12px;
-  }
+    .login-buttons {
+        width: 100%;
+        justify-content: center;
+    }
 
-  .hero h1 {
-    font-size: 28px;
-  }
+    .login-btn {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
 
-  .hero p {
-    font-size: 15px;
-  }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 20px;
+    }
 
-  .course-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-image {
+        font-size: 90px;
+        min-width: auto;
+    }
+
+    .courses {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    .section-title h2 {
+        font-size: 34px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
 
-  <div class="logo">
-    <span>📚</span> StudyHub
-  </div>
+    <div class="logo">
+        <div class="logo-icon">📖</div>
+        <div class="logo-text">
+            Study<span>Hub</span>
+        </div>
+    </div>
 
-  <div class="login-buttons">
-    <button class="student-btn" onclick="studentLogin()">
-      👨‍🎓 Student Login
-    </button>
+    <nav>
+        <a href="#">🏠 Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
 
-    <button class="teacher-btn" onclick="teacherLogin()">
-      👨‍🏫 Teacher Login
-    </button>
-  </div>
+    <div class="login-buttons">
+        <button class="login-btn" onclick="studentLogin()">
+            👤 Student Login
+        </button>
+
+        <button class="login-btn teacher-btn" onclick="teacherLogin()">
+            👥 Teacher Login
+        </button>
+    </div>
 
 </header>
 
 
+<!-- HERO -->
 <section class="hero">
 
-  <h1>Learn. Study. Succeed.</h1>
+    <div class="hero-text">
 
-  <p>
-    Access quality study materials, chapter-wise courses
-    and learning resources prepared by teachers.
-  </p>
+        <h1>
+            Learn.
+            <span class="blue">Study.</span>
+            <span class="green">Succeed.</span>
+        </h1>
+
+        <h2>
+            Quality education for a brighter future.
+        </h2>
+
+        <p>
+            Access quality study materials, learn at your own pace
+            and prepare for your academic and competitive exams
+            with StudyHub.
+        </p>
+
+    </div>
+
+    <div class="hero-image">
+        🎓<br>
+        📚✏️
+    </div>
 
 </section>
 
 
-<section class="about">
+<!-- COURSES -->
+<section class="courses-section" id="courses">
 
-  <h2>📖 About Our Courses</h2>
+    <div class="section-title">
+        <h2>Our Courses</h2>
+        <p>Choose your course and start learning today</p>
+    </div>
 
-  <p>
-    Our courses provide students with organized,
-    chapter-wise study materials in PDF format.
-    Start learning with our free content and continue
-    with premium courses when you are ready.
-  </p>
+
+    <div class="courses">
+
+        <!-- UPPER PRIMARY -->
+        <div class="course-card upper"
+             onclick="openCourse('Upper Primary')">
+
+            <div>
+
+                <div class="course-icon">
+                    📚
+                </div>
+
+                <h3>Upper Primary</h3>
+
+                <div class="subtitle">
+                    Classes V – VIII
+                </div>
+
+                <div class="description">
+                    Build strong basics and
+                    develop your knowledge.
+                </div>
+
+            </div>
+
+            <div class="free-badge">
+                🔓 2 Chapters Free
+            </div>
+
+        </div>
+
+
+        <!-- WBSSC IX-X -->
+        <div class="course-card ixx"
+             onclick="openCourse('WBSSC IX-X')">
+
+            <div>
+
+                <div class="course-icon">
+                    📖
+                </div>
+
+                <h3>WBSSC IX-X</h3>
+
+                <div class="subtitle">
+                    Classes IX – X
+                </div>
+
+                <div class="description">
+                    Concepts, practice and
+                    examination preparation.
+                </div>
+
+            </div>
+
+            <div class="free-badge">
+                🔓 2 Chapters Free
+            </div>
+
+        </div>
+
+
+        <!-- WBSSC XI-XII -->
+        <div class="course-card xixii"
+             onclick="openCourse('WBSSC XI-XII')">
+
+            <div>
+
+                <div class="course-icon">
+                    🎓
+                </div>
+
+                <h3>WBSSC XI-XII</h3>
+
+                <div class="subtitle">
+                    Classes XI – XII
+                </div>
+
+                <div class="description">
+                    Advanced study materials
+                    for higher classes.
+                </div>
+
+            </div>
+
+            <div class="free-badge">
+                🔓 2 Chapters Free
+            </div>
+
+        </div>
+
+
+        <!-- SSC PSC -->
+        <div class="course-card ssc"
+             onclick="openCourse('SSC-PSC')">
+
+            <div>
+
+                <div class="course-icon">
+                    🏛️
+                </div>
+
+                <h3>SSC-PSC</h3>
+
+                <div class="subtitle">
+                    Competitive Exams
+                </div>
+
+                <div class="description">
+                    Prepare effectively for
+                    government competitive exams.
+                </div>
+
+            </div>
+
+            <div class="free-badge">
+                🔓 2 Chapters Free
+            </div>
+
+        </div>
+
+
+        <!-- NET SET -->
+        <div class="course-card net"
+             onclick="openCourse('NET/SET')">
+
+            <div>
+
+                <div class="course-icon">
+                    🎓
+                </div>
+
+                <h3>NET/SET</h3>
+
+                <div class="subtitle">
+                    Higher Education
+                </div>
+
+                <div class="description">
+                    Prepare for NET and SET
+                    examinations.
+                </div>
+
+            </div>
+
+            <div class="free-badge">
+                🔓 2 Chapters Free
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<section class="courses">
-
-  <h2>🎓 Our Courses</h2>
-
-  <div class="course-grid">
-
-    <div class="course-card" onclick="openCourse('Mathematics')">
-      <div class="course-icon">📐</div>
-      <h3>Mathematics</h3>
-      <p>Learn mathematics chapter by chapter.</p>
-      <span class="free">2 Chapters Free</span>
-    </div>
-
-
-    <div class="course-card" onclick="openCourse('Science')">
-      <div class="course-icon">🔬</div>
-      <h3>Science</h3>
-      <p>Explore science concepts and lessons.</p>
-      <span class="free">2 Chapters Free</span>
-    </div>
-
-
-    <div class="course-card" onclick="openCourse('English')">
-      <div class="course-icon">📚</div>
-      <h3>English</h3>
-      <p>Improve grammar and language skills.</p>
-      <span class="free">2 Chapters Free</span>
-    </div>
-
-
-    <div class="course-card" onclick="openCourse('Computer')">
-      <div class="course-icon">💻</div>
-      <h3>Computer</h3>
-      <p>Learn computer and digital skills.</p>
-      <span class="free">2 Chapters Free</span>
-    </div>
-
-  </div>
-
-</section>
-
-
+<!-- FOOTER -->
 <footer>
 
-  <p>© 2026 StudyHub</p>
-  <p>Learn Today • Succeed Tomorrow</p>
+    <p>
+        © 2026 StudyHub. All rights reserved.
+    </p>
+
+    <p>
+        Learn Today &nbsp; | &nbsp; Build Tomorrow
+    </p>
 
 </footer>
 
@@ -303,15 +597,15 @@ footer p {
 <script>
 
 function studentLogin() {
-  alert("Student Login will be created in the next step.");
+    alert("Student Login page will be added next.");
 }
 
 function teacherLogin() {
-  alert("Teacher Login will be created later.");
+    alert("Teacher Login page will be added later.");
 }
 
-function openCourse(course) {
-  alert(course + " course page will be created next.");
+function openCourse(courseName) {
+    alert(courseName + " course page will be added next.");
 }
 
 </script>
