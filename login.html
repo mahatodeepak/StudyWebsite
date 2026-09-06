@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Login - Study With Deepak</title>
+
+  <link rel="icon"
+        type="image/png"
+        href="logo.png">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f5f7fb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      background: white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-area img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .site-name {
+      color: #173b72;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .home-button {
+      background: #e8eef9;
+      color: #173b72;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* LOGIN AREA */
+
+    .login-container {
+      width: 100%;
+      max-width: 450px;
+      margin: 45px auto;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .login-title {
+      text-align: center;
+      color: #173b72;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    /* ACCOUNT TYPE */
+
+    .account-types {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .account-type {
+      flex: 1;
+      padding: 15px 8px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .account-type.active {
+      border-color: #173b72;
+      background: #eef3fb;
+      color: #173b72;
+    }
+
+    .account-type .icon {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    /* FORM */
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 17px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #173b72;
+    }
+
+    .password-row {
+      position: relative;
+    }
+
+    .password-row input {
+      padding-right: 55px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      color: #173b72;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 13px;
+      background: #173b72;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      opacity: 0.9;
+    }
+
+    .forgot {
+      text-align: right;
+      margin: 8px 0 18px;
+    }
+
+    .forgot a {
+      color: #173b72;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    /* SIGN UP */
+
+    .signup-text {
+      text-align: center;
+      margin-top: 22px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .signup-link {
+      color: #173b72;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* COURSE MESSAGE */
+
+    #courseMessage {
+      display: none;
+      background: #eef3fb;
+      color: #173b72;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: auto;
+      background: #173b72;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .site-name {
+        font-size: 16px;
+      }
+
+      .login-container {
+        margin: 25px auto;
+        padding: 12px;
+      }
+
+      .login-box {
+        padding: 25px 18px;
+      }
+
+      .login-title {
+        font-size: 24px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo-area">
+
+      <img src="logo.png"
+           alt="Study With Deepak Logo">
+
+      <div class="site-name">
+        Study With Deepak
+      </div>
+
+    </div>
+
+    <button class="home-button"
+            onclick="goHome()">
+
+      🏠 Home
+
+    </button>
+
+  </header>
+
+
+
+  <!-- LOGIN -->
+
+  <main class="login-container">
+
+    <div class="login-box">
+
+      <h1 class="login-title">
+        Welcome Back
+      </h1>
+
+      <p class="login-subtitle">
+        Login to continue your learning
+      </p>
+
+
+      <!-- COURSE MESSAGE -->
+
+      <div id="courseMessage"></div>
+
+
+      <!-- ACCOUNT TYPE -->
+
+      <div class="account-types">
+
+        <button class="account-type active"
+                id="studentType"
+                onclick="selectAccount('student')">
+
+          <span class="icon">👨‍🎓</span>
+
+          Student
+
+        </button>
+
+
+        <button class="account-type"
+                id="teacherType"
+                onclick="selectAccount('teacher')">
+
+          <span class="icon">👨‍🏫</span>
+
+          Teacher
+
+        </button>
+
+      </div>
+
+
+      <!-- LOGIN FORM -->
+
+      <form onsubmit="login(event)">
+
+        <label for="email">
+          Email / Username
+        </label>
+
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter your email or username"
+          required
+        >
+
+
+        <label for="password">
+          Password
+        </label>
+
+        <div class="password-row">
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword()">
+
+            Show
+
+          </button>
+
+        </div>
+
+
+        <div class="forgot">
+
+          <a href="#"
+             onclick="forgotPassword(event)">
+
+            Forgot Password?
+
+          </a>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-button">
+
+          🔐 Login
+
+        </button>
+
+      </form>
+
+
+      <!-- SIGN UP -->
+
+      <div class="signup-text">
+
+        Don't have an account?
+
+        <a class="signup-link"
+           onclick="goSignup()">
+
+          Sign Up
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Study With Deepak
+
+  </footer>
+
+
+
+  <script>
+
+    /* DEFAULT ACCOUNT TYPE */
+
+    let accountType = "student";
+
+
+    /* COURSE FROM HOME PAGE */
+
+    const urlParams =
+      new URLSearchParams(window.location.search);
+
+    const selectedCourse =
+      urlParams.get("course");
+
+
+    if (selectedCourse) {
+
+      const courseNames = {
+
+        "upper-primary":
+          "📐 Upper Primary",
+
+        "wbssc-ix-x":
+          "📘 WBSSC IX–X",
+
+        "wbssc-xi-xii":
+          "📚 WBSSC XI–XII",
+
+        "ssc-psc":
+          "📝 SSC–PSC",
+
+        "net-set":
+          "🎓 NET/SET"
+
+      };
+
+
+      if (courseNames[selectedCourse]) {
+
+        const message =
+          document.getElementById("courseMessage");
+
+        message.textContent =
+          "You selected: " +
+          courseNames[selectedCourse];
+
+        message.style.display = "block";
+
+      }
+
+    }
+
+
+    /* SELECT STUDENT / TEACHER */
+
+    function selectAccount(type) {
+
+      accountType = type;
+
+
+      document
+        .getElementById("studentType")
+        .classList.remove("active");
+
+      document
+        .getElementById("teacherType")
+        .classList.remove("active");
+
+
+      if (type === "student") {
+
+        document
+          .getElementById("studentType")
+          .classList.add("active");
+
+      } else {
+
+        document
+          .getElementById("teacherType")
+          .classList.add("active");
+
+      }
+
+    }
+
+
+    /* PASSWORD SHOW / HIDE */
+
+    function togglePassword() {
+
+      const password =
+        document.getElementById("password");
+
+      const button =
+        document.querySelector(".show-password");
+
+
+      if (password.type === "password") {
+
+        password.type = "text";
+        button.textContent = "Hide";
+
+      } else {
+
+        password.type = "password";
+        button.textContent = "Show";
+
+      }
+
+    }
+
+
+    /* LOGIN */
+
+    function login(event) {
+
+      event.preventDefault();
+
+
+      const username =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+
+      if (!username || !password) {
+
+        alert("Please enter your login details.");
+
+        return;
+
+      }
+
+
+      /*
+        TEMPORARY LOGIN
+
+        This is only the front-end version.
+
+        Later we will connect this to a
+        secure database/authentication system.
+      */
+
+
+      if (accountType === "student") {
+
+        alert(
+          "Student login selected.\n\n" +
+          "Student Dashboard will be connected next."
+        );
+
+        /*
+        Later:
+
+        window.location.href =
+          "student-dashboard.html";
+        */
+
+      } else {
+
+        alert(
+          "Teacher login selected.\n\n" +
+          "Teacher Dashboard will be connected next."
+        );
+
+        /*
+        Later:
+
+        window.location.href =
+          "teacher-dashboard.html";
+        */
+
+      }
+
+    }
+
+
+    /* SIGN UP */
+
+    function goSignup() {
+
+      let url = "signup.html";
+
+      if (selectedCourse) {
+
+        url += "?course=" +
+          encodeURIComponent(selectedCourse);
+
+      }
+
+      window.location.href = url;
+
+    }
+
+
+    /* FORGOT PASSWORD */
+
+    function forgotPassword(event) {
+
+      event.preventDefault();
+
+      alert(
+        "Password recovery will be added " +
+        "when we connect the secure authentication system."
+      );
+
+    }
+
+
+    /* HOME */
+
+    function goHome() {
+
+      window.location.href = "index.html";
+
+    }
+
+  </script>
+
+
+</body>
+
+  </html>
