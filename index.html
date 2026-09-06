@@ -1,614 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>StudyHub - Learn. Study. Succeed.</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  <title>Study With Deepak</title>
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f7fbff;
-    color: #123f70;
-}
+  <link rel="icon" type="image/png" href="logo.png">
 
-/* HEADER */
-header {
-    background: linear-gradient(135deg, #07549a, #0d6fc4);
-    color: white;
-    padding: 15px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-icon {
-    font-size: 42px;
-}
-
-.logo-text {
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.logo-text span {
-    color: #ffc400;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #ffd000;
-}
-
-.login-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.login-btn {
-    border: 2px solid white;
-    background: transparent;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.teacher-btn {
-    background: #12b85a;
-    border-color: #12b85a;
-}
-
-.login-btn:hover {
-    transform: scale(1.03);
-}
-
-/* HERO */
-.hero {
-    min-height: 330px;
-    padding: 50px 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    background: linear-gradient(120deg, #eef9ff, #ffffff);
-}
-
-.hero-text {
-    max-width: 650px;
-}
-
-.hero h1 {
-    font-size: 58px;
-    line-height: 1.1;
-    margin-bottom: 18px;
-    color: #174c82;
-}
-
-.hero h1 .blue {
-    color: #1684e8;
-}
-
-.hero h1 .green {
-    color: #12a85b;
-}
-
-.hero h2 {
-    font-size: 27px;
-    margin-bottom: 22px;
-}
-
-.hero p {
-    font-size: 19px;
-    line-height: 1.6;
-}
-
-.hero-image {
-    font-size: 145px;
-    text-align: center;
-    min-width: 300px;
-}
-
-/* COURSES */
-.courses-section {
-    padding: 45px 4%;
-    background: white;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.section-title h2 {
-    font-size: 42px;
-    color: #174c82;
-}
-
-.section-title p {
-    font-size: 19px;
-    margin-top: 8px;
-    color: #3974a8;
-}
-
-.courses {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    max-width: 1450px;
-    margin: auto;
-}
-
-/* COURSE CARD */
-.course-card {
-    border-radius: 18px;
-    padding: 25px 15px;
-    text-align: center;
-    min-height: 390px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    transition: 0.3s;
-    cursor: pointer;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-}
-
-.course-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-.upper {
-    background: #e6f6ff;
-    border-bottom: 8px solid #1499ed;
-}
-
-.ixx {
-    background: #f0ecff;
-    border-bottom: 8px solid #8061e8;
-}
-
-.xixii {
-    background: #e8fff1;
-    border-bottom: 8px solid #18bd83;
-}
-
-.ssc {
-    background: #fff7e6;
-    border-bottom: 8px solid #ffbd28;
-}
-
-.net {
-    background: #fff0f5;
-    border-bottom: 8px solid #ff5791;
-}
-
-.course-icon {
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 75px;
-    margin-bottom: 15px;
-}
-
-.course-card h3 {
-    font-size: 24px;
-    color: #124b82;
-    margin-bottom: 8px;
-}
-
-.course-card .subtitle {
-    font-size: 17px;
-    color: #3974a8;
-    margin-bottom: 10px;
-}
-
-.course-card .description {
-    font-size: 15px;
-    line-height: 1.5;
-    color: #315d80;
-    min-height: 48px;
-}
-
-/* FREE CHAPTER BADGE */
-.free-badge {
-    background: #c9f7d8;
-    color: #098346;
-    padding: 12px 18px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 15px;
-}
-
-.free-badge span {
-    font-size: 18px;
-}
-
-/* FOOTER */
-footer {
-    background: #174d7c;
-    color: white;
-    padding: 20px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-footer p {
-    font-size: 15px;
-}
-
-/* TABLET */
-@media (max-width: 1100px) {
-
-    .courses {
-        grid-template-columns: repeat(2, 1fr);
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
     }
 
-    nav {
-        display: none;
+    body {
+      background: #f5f7fb;
+      color: #222;
     }
 
-    .hero h1 {
-        font-size: 45px;
-    }
-}
-
-/* MOBILE */
-@media (max-width: 650px) {
-
+    /* HEADER */
     header {
-        flex-direction: column;
-        padding: 15px;
+      background: white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .logo-text {
-        font-size: 27px;
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .login-buttons {
-        width: 100%;
-        justify-content: center;
+    .logo-area img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .site-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #173b72;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .auth-buttons button {
+      border: none;
+      padding: 9px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
     }
 
     .login-btn {
-        padding: 10px 14px;
-        font-size: 14px;
+      background: #173b72;
+      color: white;
     }
 
+    .signup-btn {
+      background: #e8eef9;
+      color: #173b72;
+    }
+
+    /* HERO */
     .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 35px 20px;
+      text-align: center;
+      padding: 55px 20px;
+      background: linear-gradient(135deg, #173b72, #2868b2);
+      color: white;
     }
 
     .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero h2 {
-        font-size: 22px;
+      font-size: 34px;
+      margin-bottom: 15px;
     }
 
     .hero p {
-        font-size: 16px;
+      font-size: 17px;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
     }
 
-    .hero-image {
-        font-size: 90px;
-        min-width: auto;
+    .hero-button {
+      margin-top: 25px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: white;
+      color: #173b72;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .courses {
-        grid-template-columns: 1fr;
-        padding: 0 15px;
+    /* ABOUT */
+    .about {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     }
 
-    .section-title h2 {
-        font-size: 34px;
+    .about h2 {
+      text-align: center;
+      color: #173b72;
+      margin-bottom: 15px;
     }
 
+    .about p {
+      text-align: center;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* COURSES */
+    .courses-section {
+      max-width: 1100px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .courses-section h2 {
+      text-align: center;
+      color: #173b72;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .section-description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px 18px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.25s;
+      cursor: pointer;
+      border: 1px solid #e8ebf0;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+    }
+
+    .course-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .course-card h3 {
+      color: #173b72;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .course-card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .course-button {
+      margin-top: 15px;
+      padding: 9px 18px;
+      border: none;
+      border-radius: 7px;
+      background: #173b72;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* FEATURES */
+    .features {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .features h2 {
+      text-align: center;
+      color: #173b72;
+      margin-bottom: 25px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .feature-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      color: #173b72;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
     footer {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+      background: #173b72;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 50px;
     }
-}
-</style>
+
+    footer p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+
+      header {
+        padding: 10px 12px;
+      }
+
+      .site-name {
+        font-size: 16px;
+      }
+
+      .logo-area img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .auth-buttons button {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 45px 15px;
+      }
+
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .course-card {
+        padding: 18px 10px;
+      }
+
+      .course-icon {
+        font-size: 38px;
+      }
+
+      .course-card h3 {
+        font-size: 15px;
+      }
+
+      .course-card p {
+        font-size: 12px;
+      }
+
+      .course-button {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
+  <!-- HEADER -->
+  <header>
 
-    <div class="logo">
-        <div class="logo-icon">📖</div>
-        <div class="logo-text">
-            Study<span>Hub</span>
+    <div class="logo-area">
+      <img src="logo.png" alt="Study With Deepak Logo">
+
+      <div class="site-name">
+        Study With Deepak
+      </div>
+    </div>
+
+    <div class="auth-buttons">
+      <button class="login-btn"
+              onclick="goToLogin()">
+        Login
+      </button>
+
+      <button class="signup-btn"
+              onclick="goToSignup()">
+        Sign Up
+      </button>
+    </div>
+
+  </header>
+
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+
+    <h1>Learn. Practice. Succeed.</h1>
+
+    <p>
+      Welcome to Study With Deepak — a learning platform
+      designed to help students prepare for school,
+      competitive examinations and higher studies.
+    </p>
+
+    <button class="hero-button"
+            onclick="scrollToCourses()">
+      📚 Explore Courses
+    </button>
+
+  </section>
+
+
+  <!-- ABOUT SECTION -->
+  <section class="about">
+
+    <h2>📖 About Our Platform</h2>
+
+    <p>
+      Study With Deepak provides structured study materials,
+      chapter-wise learning resources and practice opportunities
+      for students. Select your course below and start learning.
+    </p>
+
+  </section>
+
+
+  <!-- COURSES -->
+  <section class="courses-section" id="courses">
+
+    <h2>📚 Our Courses</h2>
+
+    <p class="section-description">
+      Choose your course to begin your learning journey.
+    </p>
+
+
+    <div class="course-grid">
+
+
+      <!-- UPPER PRIMARY -->
+      <div class="course-card"
+           onclick="openCourse('upper-primary')">
+
+        <div class="course-icon">
+          📐
         </div>
-    </div>
 
-    <nav>
-        <a href="#">🏠 Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
-
-    <div class="login-buttons">
-        <button class="login-btn" onclick="studentLogin()">
-            👤 Student Login
-        </button>
-
-        <button class="login-btn teacher-btn" onclick="teacherLogin()">
-            👥 Teacher Login
-        </button>
-    </div>
-
-</header>
-
-
-<!-- HERO -->
-<section class="hero">
-
-    <div class="hero-text">
-
-        <h1>
-            Learn.
-            <span class="blue">Study.</span>
-            <span class="green">Succeed.</span>
-        </h1>
-
-        <h2>
-            Quality education for a brighter future.
-        </h2>
+        <h3>
+          Upper Primary
+        </h3>
 
         <p>
-            Access quality study materials, learn at your own pace
-            and prepare for your academic and competitive exams
-            with StudyHub.
+          Mathematics and other subjects
+          for Upper Primary students.
         </p>
 
-    </div>
+        <button class="course-button">
+          Start Learning
+        </button>
 
-    <div class="hero-image">
-        🎓<br>
-        📚✏️
-    </div>
-
-</section>
+      </div>
 
 
-<!-- COURSES -->
-<section class="courses-section" id="courses">
+      <!-- WBSSC IX-X -->
+      <div class="course-card"
+           onclick="openCourse('wbssc-ix-x')">
 
-    <div class="section-title">
-        <h2>Our Courses</h2>
-        <p>Choose your course and start learning today</p>
-    </div>
-
-
-    <div class="courses">
-
-        <!-- UPPER PRIMARY -->
-        <div class="course-card upper"
-             onclick="openCourse('Upper Primary')">
-
-            <div>
-
-                <div class="course-icon">
-                    📚
-                </div>
-
-                <h3>Upper Primary</h3>
-
-                <div class="subtitle">
-                    Classes V – VIII
-                </div>
-
-                <div class="description">
-                    Build strong basics and
-                    develop your knowledge.
-                </div>
-
-            </div>
-
-            <div class="free-badge">
-                🔓 2 Chapters Free
-            </div>
-
+        <div class="course-icon">
+          📘
         </div>
 
+        <h3>
+          WBSSC IX–X
+        </h3>
 
-        <!-- WBSSC IX-X -->
-        <div class="course-card ixx"
-             onclick="openCourse('WBSSC IX-X')">
+        <p>
+          Study materials and preparation
+          for Classes IX and X.
+        </p>
 
-            <div>
+        <button class="course-button">
+          Start Learning
+        </button>
 
-                <div class="course-icon">
-                    📖
-                </div>
+      </div>
 
-                <h3>WBSSC IX-X</h3>
 
-                <div class="subtitle">
-                    Classes IX – X
-                </div>
+      <!-- WBSSC XI-XII -->
+      <div class="course-card"
+           onclick="openCourse('wbssc-xi-xii')">
 
-                <div class="description">
-                    Concepts, practice and
-                    examination preparation.
-                </div>
-
-            </div>
-
-            <div class="free-badge">
-                🔓 2 Chapters Free
-            </div>
-
+        <div class="course-icon">
+          📚
         </div>
 
+        <h3>
+          WBSSC XI–XII
+        </h3>
 
-        <!-- WBSSC XI-XII -->
-        <div class="course-card xixii"
-             onclick="openCourse('WBSSC XI-XII')">
+        <p>
+          Higher secondary study materials
+          and chapter-wise preparation.
+        </p>
 
-            <div>
+        <button class="course-button">
+          Start Learning
+        </button>
 
-                <div class="course-icon">
-                    🎓
-                </div>
+      </div>
 
-                <h3>WBSSC XI-XII</h3>
 
-                <div class="subtitle">
-                    Classes XI – XII
-                </div>
+      <!-- SSC PSC -->
+      <div class="course-card"
+           onclick="openCourse('ssc-psc')">
 
-                <div class="description">
-                    Advanced study materials
-                    for higher classes.
-                </div>
-
-            </div>
-
-            <div class="free-badge">
-                🔓 2 Chapters Free
-            </div>
-
+        <div class="course-icon">
+          📝
         </div>
 
+        <h3>
+          SSC–PSC
+        </h3>
 
-        <!-- SSC PSC -->
-        <div class="course-card ssc"
-             onclick="openCourse('SSC-PSC')">
+        <p>
+          Practice and preparation for
+          competitive examinations.
+        </p>
 
-            <div>
+        <button class="course-button">
+          Start Learning
+        </button>
 
-                <div class="course-icon">
-                    🏛️
-                </div>
+      </div>
 
-                <h3>SSC-PSC</h3>
 
-                <div class="subtitle">
-                    Competitive Exams
-                </div>
+      <!-- NET SET -->
+      <div class="course-card"
+           onclick="openCourse('net-set')">
 
-                <div class="description">
-                    Prepare effectively for
-                    government competitive exams.
-                </div>
-
-            </div>
-
-            <div class="free-badge">
-                🔓 2 Chapters Free
-            </div>
-
+        <div class="course-icon">
+          🎓
         </div>
 
+        <h3>
+          NET/SET
+        </h3>
 
-        <!-- NET SET -->
-        <div class="course-card net"
-             onclick="openCourse('NET/SET')">
+        <p>
+          Preparation resources for
+          NET and SET examinations.
+        </p>
 
-            <div>
+        <button class="course-button">
+          Start Learning
+        </button>
 
-                <div class="course-icon">
-                    🎓
-                </div>
+      </div>
 
-                <h3>NET/SET</h3>
-
-                <div class="subtitle">
-                    Higher Education
-                </div>
-
-                <div class="description">
-                    Prepare for NET and SET
-                    examinations.
-                </div>
-
-            </div>
-
-            <div class="free-badge">
-                🔓 2 Chapters Free
-            </div>
-
-        </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- FOOTER -->
-<footer>
+  <!-- FEATURES -->
+  <section class="features">
+
+    <h2>⭐ Why Choose Us?</h2>
+
+    <div class="feature-grid">
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📖
+        </div>
+
+        <h3>
+          Chapter-wise Learning
+        </h3>
+
+        <p>
+          Learn systematically with
+          organized chapters.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🧠
+        </div>
+
+        <h3>
+          Practice
+        </h3>
+
+        <p>
+          Improve your preparation through
+          practice and revision.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📱
+        </div>
+
+        <h3>
+          Mobile Friendly
+        </h3>
+
+        <p>
+          Study easily from your
+          smartphone or computer.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🔒
+        </div>
+
+        <h3>
+          Student Account
+        </h3>
+
+        <p>
+          Create an account and access
+          your course materials.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
 
     <p>
-        © 2026 StudyHub. All rights reserved.
+      © 2026 Study With Deepak
     </p>
 
     <p>
-        Learn Today &nbsp; | &nbsp; Build Tomorrow
+      Learn Today • Succeed Tomorrow
     </p>
 
-</footer>
+  </footer>
 
 
-<script>
+  <!-- JAVASCRIPT -->
+  <script>
 
-function studentLogin() {
-    alert("Student Login page will be added next.");
-}
+    function scrollToCourses() {
 
-function teacherLogin() {
-    alert("Teacher Login page will be added later.");
-}
+      document.getElementById("courses")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
 
-function openCourse(courseName) {
-    alert(courseName + " course page will be added next.");
-}
+    }
 
-</script>
+
+    function goToLogin() {
+
+      window.location.href = "login.html";
+
+    }
+
+
+    function goToSignup() {
+
+      window.location.href = "signup.html";
+
+    }
+
+
+    function openCourse(course) {
+
+      /*
+        For now, all courses go to the login page.
+
+        Later we will create:
+        student login
+        signup
+        course page
+        chapter page
+        payment system
+      */
+
+      window.location.href =
+        "login.html?course=" + course;
+
+    }
+
+  </script>
 
 </body>
 </html>
