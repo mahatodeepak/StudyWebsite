@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Sign Up - Study With Deepak</title>
+
+  <link rel="icon"
+        type="image/png"
+        href="logo.png">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f5f7fb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      background: white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-area img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .site-name {
+      color: #173b72;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .home-button {
+      background: #e8eef9;
+      color: #173b72;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* SIGNUP AREA */
+
+    .signup-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+
+    .signup-box {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .signup-title {
+      text-align: center;
+      color: #173b72;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .signup-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    /* ACCOUNT TYPE */
+
+    .account-types {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .account-type {
+      flex: 1;
+      padding: 15px 8px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .account-type.active {
+      border-color: #173b72;
+      background: #eef3fb;
+      color: #173b72;
+    }
+
+    .account-type .icon {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    /* COURSE MESSAGE */
+
+    #courseMessage {
+      display: none;
+      background: #eef3fb;
+      color: #173b72;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* FORM */
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #173b72;
+    }
+
+    .password-row {
+      position: relative;
+    }
+
+    .password-row input {
+      padding-right: 55px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      color: #173b72;
+    }
+
+    /* TEACHER NOTICE */
+
+    .teacher-notice {
+      display: none;
+      background: #fff6df;
+      border-left: 4px solid #e0a400;
+      padding: 12px;
+      border-radius: 7px;
+      margin-bottom: 20px;
+      color: #665000;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* SIGNUP BUTTON */
+
+    .signup-button {
+      width: 100%;
+      padding: 13px;
+      background: #173b72;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .signup-button:hover {
+      opacity: 0.9;
+    }
+
+    /* LOGIN LINK */
+
+    .login-text {
+      text-align: center;
+      margin-top: 22px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .login-link {
+      color: #173b72;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: auto;
+      background: #173b72;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .site-name {
+        font-size: 16px;
+      }
+
+      .signup-container {
+        margin: 20px auto;
+        padding: 12px;
+      }
+
+      .signup-box {
+        padding: 25px 18px;
+      }
+
+      .signup-title {
+        font-size: 24px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo-area">
+
+      <img src="logo.png"
+           alt="Study With Deepak Logo">
+
+      <div class="site-name">
+        Study With Deepak
+      </div>
+
+    </div>
+
+    <button class="home-button"
+            onclick="goHome()">
+
+      🏠 Home
+
+    </button>
+
+  </header>
+
+
+
+  <!-- SIGNUP -->
+
+  <main class="signup-container">
+
+    <div class="signup-box">
+
+      <h1 class="signup-title">
+        Create Account
+      </h1>
+
+      <p class="signup-subtitle">
+        Join Study With Deepak
+      </p>
+
+
+      <!-- COURSE MESSAGE -->
+
+      <div id="courseMessage"></div>
+
+
+      <!-- ACCOUNT TYPE -->
+
+      <div class="account-types">
+
+        <button type="button"
+                class="account-type active"
+                id="studentType"
+                onclick="selectAccount('student')">
+
+          <span class="icon">👨‍🎓</span>
+
+          Student
+
+        </button>
+
+
+        <button type="button"
+                class="account-type"
+                id="teacherType"
+                onclick="selectAccount('teacher')">
+
+          <span class="icon">👨‍🏫</span>
+
+          Teacher
+
+        </button>
+
+      </div>
+
+
+      <!-- TEACHER NOTICE -->
+
+      <div id="teacherNotice"
+           class="teacher-notice">
+
+        👨‍🏫 <strong>Teacher Account:</strong><br>
+
+        Teacher accounts will require verification
+        before access to teacher tools is granted.
+
+      </div>
+
+
+      <!-- FORM -->
+
+      <form onsubmit="createAccount(event)">
+
+
+        <!-- FULL NAME -->
+
+        <label for="fullName">
+          Full Name
+        </label>
+
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Enter your full name"
+          required
+        >
+
+
+        <!-- USERNAME -->
+
+        <label for="username">
+          Username
+        </label>
+
+        <input
+          type="text"
+          id="username"
+          placeholder="Choose a username"
+          minlength="4"
+          required
+        >
+
+
+        <!-- EMAIL -->
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        >
+
+
+        <!-- STUDENT ONLY -->
+
+        <div id="studentFields">
+
+          <label for="classLevel">
+            Class / Level
+          </label>
+
+          <select id="classLevel">
+
+            <option value="">
+              Select your class
+            </option>
+
+            <option>
+              Upper Primary
+            </option>
+
+            <option>
+              Class IX
+            </option>
+
+            <option>
+              Class X
+            </option>
+
+            <option>
+              Class XI
+            </option>
+
+            <option>
+              Class XII
+            </option>
+
+            <option>
+              SSC–PSC
+            </option>
+
+            <option>
+              NET/SET
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- TEACHER ONLY -->
+
+        <div id="teacherFields"
+             style="display:none;">
+
+          <label for="subject">
+            Subject
+          </label>
+
+          <input
+            type="text"
+            id="subject"
+            placeholder="e.g. Mathematics"
+          >
+
+
+          <label for="qualification">
+            Qualification
+          </label>
+
+          <input
+            type="text"
+            id="qualification"
+            placeholder="e.g. M.Sc., B.Ed."
+          >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <label for="password">
+          Password
+        </label>
+
+        <div class="password-row">
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            minlength="6"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword('password', this)">
+
+            Show
+
+          </button>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+        <div class="password-row">
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Enter password again"
+            minlength="6"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword('confirmPassword', this)">
+
+            Show
+
+          </button>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+          type="submit"
+          class="signup-button">
+
+          ✨ Create Account
+
+        </button>
+
+      </form>
+
+
+      <!-- LOGIN -->
+
+      <div class="login-text">
+
+        Already have an account?
+
+        <a class="login-link"
+           onclick="goLogin()">
+
+          Login
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Study With Deepak
+
+  </footer>
+
+
+
+  <script>
+
+    let accountType = "student";
+
+
+    /* COURSE FROM HOME PAGE */
+
+    const urlParams =
+      new URLSearchParams(window.location.search);
+
+    const selectedCourse =
+      urlParams.get("course");
+
+
+    if (selectedCourse) {
+
+      const courseNames = {
+
+        "upper-primary":
+          "📐 Upper Primary",
+
+        "wbssc-ix-x":
+          "📘 WBSSC IX–X",
+
+        "wbssc-xi-xii":
+          "📚 WBSSC XI–XII",
+
+        "ssc-psc":
+          "📝 SSC–PSC",
+
+        "net-set":
+          "🎓 NET/SET"
+
+      };
+
+
+      if (courseNames[selectedCourse]) {
+
+        const message =
+          document.getElementById("courseMessage");
+
+        message.textContent =
+          "You selected: " +
+          courseNames[selectedCourse];
+
+        message.style.display = "block";
+
+      }
+
+    }
+
+
+    /* SELECT ACCOUNT */
+
+    function selectAccount(type) {
+
+      accountType = type;
+
+
+      document
+        .getElementById("studentType")
+        .classList.remove("active");
+
+      document
+        .getElementById("teacherType")
+        .classList.remove("active");
+
+
+      const studentFields =
+        document.getElementById("studentFields");
+
+      const teacherFields =
+        document.getElementById("teacherFields");
+
+      const teacherNotice =
+        document.getElementById("teacherNotice");
+
+
+      if (type === "student") {
+
+        document
+          .getElementById("studentType")
+          .classList.add("active");
+
+        studentFields.style.display = "block";
+        teacherFields.style.display = "none";
+        teacherNotice.style.display = "none";
+
+        document.getElementById("classLevel").required = true;
+        document.getElementById("subject").required = false;
+        document.getElementById("qualification").required = false;
+
+      } else {
+
+        document
+          .getElementById("teacherType")
+          .classList.add("active");
+
+        studentFields.style.display = "none";
+        teacherFields.style.display = "block";
+        teacherNotice.style.display = "block";
+
+        document.getElementById("classLevel").required = false;
+        document.getElementById("subject").required = true;
+        document.getElementById("qualification").required = true;
+
+      }
+
+    }
+
+
+    /* PASSWORD */
+
+    function togglePassword(id, button) {
+
+      const password =
+        document.getElementById(id);
+
+
+      if (password.type === "password") {
+
+        password.type = "text";
+        button.textContent = "Hide";
+
+      } else {
+
+        password.type = "password";
+        button.textContent = "Show";
+
+      }
+
+    }
+
+
+    /* CREATE ACCOUNT */
+
+    function createAccount(event) {
+
+      event.preventDefault();
+
+
+      const password =
+        document.getElementById("password").value;
+
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+      if (password !== confirmPassword) {
+
+        alert("Passwords do not match.");
+
+        return;
+
+      }
+
+
+      /*
+        TEMPORARY FRONT-END VERSION
+
+        We will later connect this form to
+        secure authentication and a database.
+      */
+
+
+      if (accountType === "student") {
+
+        alert(
+          "Student account form submitted.\n\n" +
+          "Secure account creation will be connected next."
+        );
+
+      } else {
+
+        alert(
+          "Teacher account form submitted.\n\n" +
+          "Teacher verification and dashboard will be connected next."
+        );
+
+      }
+
+    }
+
+
+    /* LOGIN */
+
+    function goLogin() {
+
+      let url = "login.html";
+
+      if (selectedCourse) {
+
+        url += "?course=" +
+          encodeURIComponent(selectedCourse);
+
+      }
+
+      window.location.href = url;
+
+    }
+
+
+    /* HOME */
+
+    function goHome() {
+
+      window.location.href = "index.html";
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
