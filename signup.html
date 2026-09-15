@@ -29,8 +29,6 @@
       flex-direction: column;
     }
 
-    /* HEADER */
-
     header {
       background: white;
       padding: 12px 20px;
@@ -69,8 +67,6 @@
       font-weight: bold;
     }
 
-    /* SIGNUP AREA */
-
     .signup-container {
       width: 100%;
       max-width: 500px;
@@ -98,8 +94,6 @@
       margin-bottom: 25px;
       font-size: 14px;
     }
-
-    /* ACCOUNT TYPE */
 
     .account-types {
       display: flex;
@@ -132,8 +126,6 @@
       margin-bottom: 5px;
     }
 
-    /* COURSE MESSAGE */
-
     #courseMessage {
       display: none;
       background: #eef3fb;
@@ -144,8 +136,6 @@
       text-align: center;
       font-size: 14px;
     }
-
-    /* FORM */
 
     label {
       display: block;
@@ -191,8 +181,6 @@
       color: #173b72;
     }
 
-    /* TEACHER NOTICE */
-
     .teacher-notice {
       display: none;
       background: #fff6df;
@@ -204,8 +192,6 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
-    /* SIGNUP BUTTON */
 
     .signup-button {
       width: 100%;
@@ -219,11 +205,10 @@
       cursor: pointer;
     }
 
-    .signup-button:hover {
-      opacity: 0.9;
+    .signup-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
-
-    /* LOGIN LINK */
 
     .login-text {
       text-align: center;
@@ -239,8 +224,6 @@
       text-decoration: none;
     }
 
-    /* FOOTER */
-
     footer {
       margin-top: auto;
       background: #173b72;
@@ -249,8 +232,6 @@
       padding: 20px;
       font-size: 13px;
     }
-
-    /* MOBILE */
 
     @media (max-width: 500px) {
 
@@ -304,7 +285,6 @@
     </button>
 
   </header>
-
 
 
   <!-- SIGNUP -->
@@ -400,6 +380,7 @@
           id="username"
           placeholder="Choose a username"
           minlength="4"
+          maxlength="30"
           required
         >
 
@@ -426,37 +407,37 @@
             Class / Level
           </label>
 
-          <select id="classLevel">
+          <select id="classLevel" required>
 
             <option value="">
               Select your class
             </option>
 
-            <option>
+            <option value="Upper Primary">
               Upper Primary
             </option>
 
-            <option>
+            <option value="Class IX">
               Class IX
             </option>
 
-            <option>
+            <option value="Class X">
               Class X
             </option>
 
-            <option>
+            <option value="Class XI">
               Class XI
             </option>
 
-            <option>
+            <option value="Class XII">
               Class XII
             </option>
 
-            <option>
+            <option value="SSC–PSC">
               SSC–PSC
             </option>
 
-            <option>
+            <option value="NET/SET">
               NET/SET
             </option>
 
@@ -506,7 +487,7 @@
             type="password"
             id="password"
             placeholder="Create a password"
-            minlength="6"
+            minlength="8"
             required
           >
 
@@ -534,7 +515,7 @@
             type="password"
             id="confirmPassword"
             placeholder="Enter password again"
-            minlength="6"
+            minlength="8"
             required
           >
 
@@ -554,7 +535,8 @@
 
         <button
           type="submit"
-          class="signup-button">
+          class="signup-button"
+          id="signupButton">
 
           ✨ Create Account
 
@@ -583,7 +565,6 @@
   </main>
 
 
-
   <!-- FOOTER -->
 
   <footer>
@@ -593,13 +574,22 @@
   </footer>
 
 
-
   <script>
+
+    /* ===============================
+       CONFIGURATION
+    =============================== */
+
+    const API_URL =
+      "https://study-with-deepak-api.deepakmahatobist.workers.dev";
+
 
     let accountType = "student";
 
 
-    /* COURSE FROM HOME PAGE */
+    /* ===============================
+       COURSE FROM HOME PAGE
+    =============================== */
 
     const urlParams =
       new URLSearchParams(window.location.search);
@@ -608,45 +598,44 @@
       urlParams.get("course");
 
 
-    if (selectedCourse) {
+    const courseNames = {
 
-      const courseNames = {
+      "upper-primary":
+        "📐 Upper Primary",
 
-        "upper-primary":
-          "📐 Upper Primary",
+      "wbssc-ix-x":
+        "📘 WBSSC IX–X",
 
-        "wbssc-ix-x":
-          "📘 WBSSC IX–X",
+      "wbssc-xi-xii":
+        "📚 WBSSC XI–XII",
 
-        "wbssc-xi-xii":
-          "📚 WBSSC XI–XII",
+      "ssc-psc":
+        "📝 SSC–PSC",
 
-        "ssc-psc":
-          "📝 SSC–PSC",
+      "net-set":
+        "🎓 NET/SET"
 
-        "net-set":
-          "🎓 NET/SET"
-
-      };
+    };
 
 
-      if (courseNames[selectedCourse]) {
+    if (selectedCourse &&
+        courseNames[selectedCourse]) {
 
-        const message =
-          document.getElementById("courseMessage");
+      const message =
+        document.getElementById("courseMessage");
 
-        message.textContent =
-          "You selected: " +
-          courseNames[selectedCourse];
+      message.textContent =
+        "You selected: " +
+        courseNames[selectedCourse];
 
-        message.style.display = "block";
-
-      }
+      message.style.display = "block";
 
     }
 
 
-    /* SELECT ACCOUNT */
+    /* ===============================
+       SELECT ACCOUNT
+    =============================== */
 
     function selectAccount(type) {
 
@@ -705,7 +694,9 @@
     }
 
 
-    /* PASSWORD */
+    /* ===============================
+       PASSWORD
+    =============================== */
 
     function togglePassword(id, button) {
 
@@ -728,12 +719,36 @@
     }
 
 
-    /* CREATE ACCOUNT */
+    /* ===============================
+       CREATE ACCOUNT
+    =============================== */
 
-    function createAccount(event) {
+    async function createAccount(event) {
 
       event.preventDefault();
 
+
+      const button =
+        document.getElementById("signupButton");
+
+
+      const fullName =
+        document.getElementById("fullName").value.trim();
+
+      const username =
+        document.getElementById("username").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const classLevel =
+        document.getElementById("classLevel").value;
+
+      const subject =
+        document.getElementById("subject").value.trim();
+
+      const qualification =
+        document.getElementById("qualification").value.trim();
 
       const password =
         document.getElementById("password").value;
@@ -741,6 +756,8 @@
       const confirmPassword =
         document.getElementById("confirmPassword").value;
 
+
+      /* PASSWORD CHECK */
 
       if (password !== confirmPassword) {
 
@@ -751,56 +768,187 @@
       }
 
 
-      /*
-        TEMPORARY FRONT-END VERSION
-
-        We will later connect this form to
-        secure authentication and a database.
-      */
-
-
-      if (accountType === "student") {
+      if (password.length < 8) {
 
         alert(
-          "Student account form submitted.\n\n" +
-          "Secure account creation will be connected next."
+          "Password must contain at least 8 characters."
         );
 
-      } else {
+        return;
+
+      }
+
+
+      /* DISABLE BUTTON */
+
+      button.disabled = true;
+
+      button.textContent =
+        "Creating account...";
+
+
+      try {
+
+        /* SEND DATA TO CLOUDFLARE WORKER */
+
+        const response =
+          await fetch(
+            API_URL + "/api/signup",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json"
+              },
+
+              body: JSON.stringify({
+
+                full_name: fullName,
+
+                username: username,
+
+                email: email,
+
+                password: password,
+
+                account_type: accountType,
+
+                class_level:
+                  accountType === "student"
+                    ? classLevel
+                    : "",
+
+                subject:
+                  accountType === "teacher"
+                    ? subject
+                    : "",
+
+                qualification:
+                  accountType === "teacher"
+                    ? qualification
+                    : "",
+
+                course_slug:
+                  accountType === "student"
+                    ? selectedCourse || ""
+                    : ""
+
+              })
+
+            }
+          );
+
+
+        /* READ RESPONSE */
+
+        const result =
+          await response.json();
+
+
+        /* ERROR */
+
+        if (!response.ok ||
+            !result.success) {
+
+          throw new Error(
+            result.error ||
+            "Account creation failed."
+          );
+
+        }
+
+
+        /* ===============================
+           SUCCESS
+        =============================== */
+
+        if (accountType === "teacher") {
+
+          alert(
+            "Teacher account created successfully!\n\n" +
+            "Your account is now waiting for verification.\n\n" +
+            "You will be able to access teacher tools after approval."
+          );
+
+        } else {
+
+          alert(
+            "Student account created successfully!\n\n" +
+            "You can now log in to Study With Deepak."
+          );
+
+        }
+
+
+        /* GO TO LOGIN */
+
+        let loginUrl =
+          "login.html";
+
+        if (selectedCourse) {
+
+          loginUrl +=
+            "?course=" +
+            encodeURIComponent(selectedCourse);
+
+        }
+
+        window.location.href =
+          loginUrl;
+
+
+      } catch (error) {
+
+        console.error(error);
 
         alert(
-          "Teacher account form submitted.\n\n" +
-          "Teacher verification and dashboard will be connected next."
+          "Account creation failed.\n\n" +
+          error.message
         );
+
+      } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+          "✨ Create Account";
 
       }
 
     }
 
 
-    /* LOGIN */
+    /* ===============================
+       LOGIN
+    =============================== */
 
     function goLogin() {
 
-      let url = "login.html";
+      let url =
+        "login.html";
 
       if (selectedCourse) {
 
-        url += "?course=" +
+        url +=
+          "?course=" +
           encodeURIComponent(selectedCourse);
 
       }
 
-      window.location.href = url;
+      window.location.href =
+        url;
 
     }
 
 
-    /* HOME */
+    /* ===============================
+       HOME
+    =============================== */
 
     function goHome() {
 
-      window.location.href = "index.html";
+      window.location.href =
+        "index.html";
 
     }
 
