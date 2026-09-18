@@ -1,74 +1,155 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8"><meta name="viewport"
+<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-  <title>Study With Julfikar</title>  <link rel="icon" type="image/png" href="logo.png">  <style>
+<meta name="description"
+content="Study With Julfikar - Learn, Practice and Succeed with structured study materials and examination preparation.">
+
+  <title>Study With Julfikar</title>  <link rel="icon"
+        type="image/png"
+        href="logo.png">  <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      font-family: Arial, Helvetica, sans-serif;
       background: #f5f7fb;
       color: #222;
+      overflow-x: hidden;
     }
 
-    /* ================= HEADER ================= */
+    button {
+      font-family: inherit;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header {
-      background: white;
-      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      height: 72px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+
+      padding: 10px 5%;
+
+      background: rgba(255, 255, 255, 0.92);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(23, 59, 114, 0.08);
+
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+      animation: headerDrop 0.7s ease;
     }
+
+    @keyframes headerDrop {
+
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+    }
+
+
+    /* LOGO */
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
+
+      cursor: pointer;
     }
 
     .logo-area img {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
+
       object-fit: contain;
-      border-radius: 10px;
+
+      border-radius: 12px;
+
+      transition: transform 0.4s ease;
+    }
+
+    .logo-area:hover img {
+      transform: rotate(-8deg) scale(1.08);
     }
 
     .site-name {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 800;
+
       color: #173b72;
+
+      letter-spacing: -0.3px;
     }
 
-    /* DESKTOP AUTH BUTTONS */
+
+    /* DESKTOP AUTH */
 
     .auth-buttons {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     .auth-buttons button {
       border: none;
-      padding: 9px 14px;
-      border-radius: 7px;
+
+      padding: 10px 17px;
+
+      border-radius: 9px;
+
       cursor: pointer;
+
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 700;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .auth-buttons button:hover {
+      transform: translateY(-2px);
     }
 
     .login-btn {
       background: #173b72;
       color: white;
+
+      box-shadow: 0 5px 15px rgba(23, 59, 114, 0.25);
+    }
+
+    .login-btn:hover {
+      box-shadow: 0 8px 22px rgba(23, 59, 114, 0.35);
     }
 
     .signup-btn {
@@ -76,246 +157,1021 @@ content="width=device-width, initial-scale=1.0">
       color: #173b72;
     }
 
-    /* MOBILE MENU BUTTON */
+    .signup-btn:hover {
+      background: #dce7f8;
+    }
+
+
+    /* =====================================================
+       HAMBURGER
+    ===================================================== */
 
     .menu-toggle {
       display: none;
-      background: none;
+
+      width: 44px;
+      height: 44px;
+
       border: none;
-      font-size: 30px;
+      background: transparent;
+
       cursor: pointer;
-      color: #173b72;
-      line-height: 1;
+
+      position: relative;
+
+      z-index: 1100;
     }
 
-    /* MOBILE MENU */
+    .menu-toggle span {
+      position: absolute;
+
+      width: 25px;
+      height: 3px;
+
+      left: 9px;
+
+      background: #173b72;
+
+      border-radius: 5px;
+
+      transition: 0.35s ease;
+    }
+
+    .menu-toggle span:nth-child(1) {
+      top: 12px;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 20px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 28px;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      top: 20px;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      top: 20px;
+      transform: rotate(-45deg);
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
     .mobile-menu {
-      display: none;
-      background: white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-      padding: 10px 15px;
       position: fixed;
+
       top: 72px;
       left: 0;
       right: 0;
-      z-index: 99;
+
+      z-index: 999;
+
+      background: rgba(255, 255, 255, 0.97);
+
+      backdrop-filter: blur(15px);
+
+      padding: 15px;
+
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+
+      transform: translateY(-120%);
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .mobile-menu button {
-      display: block;
       width: 100%;
-      padding: 13px;
-      margin: 5px 0;
+
+      padding: 14px 16px;
+
+      margin-bottom: 8px;
+
       border: none;
-      border-radius: 8px;
-      background: #f0f4fa;
+
+      border-radius: 10px;
+
+      background: #f1f5fb;
+
       color: #173b72;
+
       font-size: 15px;
-      font-weight: bold;
+
+      font-weight: 700;
+
       text-align: left;
+
       cursor: pointer;
+
+      transform: translateX(-20px);
+
+      opacity: 0;
+
+      transition:
+        background 0.25s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .mobile-menu.open button {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .mobile-menu.open button:nth-child(1) {
+      transition-delay: 0.08s;
+    }
+
+    .mobile-menu.open button:nth-child(2) {
+      transition-delay: 0.14s;
+    }
+
+    .mobile-menu.open button:nth-child(3) {
+      transition-delay: 0.20s;
     }
 
     .mobile-menu button:hover {
-      background: #e2eaf7;
+      background: #e4ecf8;
+      transform: translateX(5px);
     }
 
-    /* ================= HERO ================= */
+
+    /* =====================================================
+       HERO
+    ===================================================== */
 
     .hero {
+      min-height: 540px;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
       text-align: center;
-      padding: 55px 20px;
-      background: linear-gradient(135deg, #173b72, #2868b2);
+
+      padding: 70px 20px;
+
       color: white;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #102e5d,
+          #173b72,
+          #2868b2,
+          #173b72
+        );
+
+      background-size: 300% 300%;
+
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+
+    }
+
+
+    /* HERO GLOW */
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.10);
+
+      top: -150px;
+      left: -100px;
+
+      animation: floatCircle 7s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      right: -100px;
+      bottom: -120px;
+
+      animation: floatCircle 9s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatCircle {
+
+      0%, 100% {
+        transform: translate(0,0) scale(1);
+      }
+
+      50% {
+        transform: translate(30px, -25px) scale(1.1);
+      }
+
+    }
+
+
+    /* FLOATING ICONS */
+
+    .floating-icon {
+      position: absolute;
+
+      font-size: 35px;
+
+      opacity: 0.22;
+
+      user-select: none;
+
+      animation: iconFloat 5s ease-in-out infinite;
+    }
+
+    .icon-one {
+      left: 10%;
+      top: 25%;
+    }
+
+    .icon-two {
+      right: 12%;
+      top: 30%;
+
+      animation-delay: 1s;
+    }
+
+    .icon-three {
+      left: 17%;
+      bottom: 18%;
+
+      animation-delay: 2s;
+    }
+
+    .icon-four {
+      right: 20%;
+      bottom: 20%;
+
+      animation-delay: 3s;
+    }
+
+    @keyframes iconFloat {
+
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-22px) rotate(8deg);
+      }
+
+    }
+
+
+    /* HERO CONTENT */
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 800px;
+
+      animation: heroAppear 1s ease;
+    }
+
+    @keyframes heroAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .hero-badge {
+      display: inline-block;
+
+      padding: 8px 15px;
+
+      border-radius: 30px;
+
+      background: rgba(255,255,255,0.14);
+
+      border: 1px solid rgba(255,255,255,0.22);
+
+      backdrop-filter: blur(8px);
+
+      font-size: 13px;
+
+      margin-bottom: 20px;
+
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.04);
+      }
+
     }
 
     .hero h1 {
-      font-size: 34px;
-      margin-bottom: 15px;
+      font-size: clamp(34px, 6vw, 58px);
+
+      line-height: 1.1;
+
+      margin-bottom: 20px;
+
+      letter-spacing: -1.5px;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #d9ecff,
+        #ffffff
+      );
+
+      background-size: 200%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      animation: textShine 4s linear infinite;
+    }
+
+    @keyframes textShine {
+
+      from {
+        background-position: 0%;
+      }
+
+      to {
+        background-position: 200%;
+      }
+
     }
 
     .hero p {
-      font-size: 17px;
       max-width: 700px;
+
       margin: auto;
-      line-height: 1.6;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      opacity: 0.92;
     }
 
     .hero-button {
-      margin-top: 25px;
-      padding: 12px 24px;
+      margin-top: 30px;
+
+      padding: 14px 25px;
+
       border: none;
-      border-radius: 8px;
+
+      border-radius: 10px;
+
       background: white;
+
       color: #173b72;
-      font-size: 16px;
-      font-weight: bold;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
       cursor: pointer;
+
+      box-shadow: 0 8px 25px rgba(0,0,0,0.20);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
-    /* ================= ABOUT ================= */
+    .hero-button:hover {
+      transform: translateY(-5px) scale(1.03);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,0.28);
+    }
+
+    .hero-button:active {
+      transform: scale(0.96);
+    }
+
+
+    /* =====================================================
+       SECTION COMMON
+    ===================================================== */
+
+    .section-label {
+      display: inline-block;
+
+      color: #2868b2;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 8px;
+    }
+
+
+    /* =====================================================
+       ABOUT
+    ===================================================== */
 
     .about {
       max-width: 1000px;
-      margin: 40px auto;
-      padding: 25px;
+
+      margin: 60px auto;
+
+      padding: 35px 30px;
+
       background: white;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,0.07);
+
+      text-align: center;
+
+      animation: fadeUp 0.8s ease;
     }
 
     .about h2 {
-      text-align: center;
       color: #173b72;
+
+      font-size: 28px;
+
       margin-bottom: 15px;
     }
 
     .about p {
-      text-align: center;
-      line-height: 1.7;
-      color: #555;
+      color: #5c6573;
+
+      line-height: 1.8;
+
+      max-width: 800px;
+
+      margin: auto;
     }
 
-    /* ================= COURSES ================= */
+
+    /* =====================================================
+       COURSES
+    ===================================================== */
 
     .courses-section {
-      max-width: 1100px;
-      margin: 45px auto;
+      max-width: 1150px;
+
+      margin: 70px auto;
+
       padding: 0 20px;
+
+      text-align: center;
     }
 
     .courses-section h2 {
-      text-align: center;
       color: #173b72;
+
+      font-size: 32px;
+
       margin-bottom: 10px;
-      font-size: 28px;
     }
 
     .section-description {
-      text-align: center;
-      color: #666;
-      margin-bottom: 30px;
+      color: #687386;
+
+      margin-bottom: 35px;
     }
 
     .course-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 20px;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+
+      gap: 22px;
     }
 
     .course-card {
+      position: relative;
+
       background: white;
-      border-radius: 15px;
-      padding: 25px 18px;
+
+      border-radius: 18px;
+
+      padding: 28px 18px;
+
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: 0.25s;
+
+      border: 1px solid #e6ebf2;
+
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.06);
+
       cursor: pointer;
-      border: 1px solid #e8ebf0;
+
+      overflow: hidden;
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+
+      animation: cardAppear 0.7s ease both;
+    }
+
+    .course-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .course-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .course-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .course-card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .course-card:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes cardAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .course-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 100%;
+      height: 4px;
+
+      left: 0;
+      top: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          #173b72,
+          #2868b2,
+          #173b72
+        );
+
+      transform: scaleX(0);
+
+      transform-origin: left;
+
+      transition: transform 0.4s ease;
+    }
+
+    .course-card:hover::before {
+      transform: scaleX(1);
     }
 
     .course-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+      transform: translateY(-10px);
+
+      box-shadow:
+        0 18px 35px rgba(23,59,114,0.13);
+
+      border-color: #cbd9ec;
     }
 
     .course-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
+      width: 70px;
+      height: 70px;
+
+      margin: 0 auto 17px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 18px;
+
+      background: #edf3fb;
+
+      font-size: 36px;
+
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease;
+    }
+
+    .course-card:hover .course-icon {
+      transform:
+        translateY(-5px)
+        rotate(-5deg)
+        scale(1.08);
+
+      background: #e2ebf8;
     }
 
     .course-card h3 {
       color: #173b72;
+
       font-size: 18px;
+
       margin-bottom: 10px;
     }
 
     .course-card p {
-      color: #666;
+      color: #687386;
+
       font-size: 14px;
-      line-height: 1.5;
+
+      line-height: 1.6;
+
+      min-height: 67px;
     }
 
     .course-button {
-      margin-top: 15px;
-      padding: 9px 18px;
+      margin-top: 17px;
+
+      padding: 10px 17px;
+
       border: none;
-      border-radius: 7px;
+
+      border-radius: 8px;
+
       background: #173b72;
+
       color: white;
+
       cursor: pointer;
-      font-weight: bold;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    /* ================= FEATURES ================= */
+    .course-card:hover .course-button {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 6px 15px rgba(23,59,114,0.25);
+    }
+
+
+    /* =====================================================
+       FEATURES
+    ===================================================== */
 
     .features {
-      max-width: 1000px;
-      margin: 50px auto;
+      max-width: 1050px;
+
+      margin: 80px auto;
+
       padding: 0 20px;
+
+      text-align: center;
     }
 
     .features h2 {
-      text-align: center;
       color: #173b72;
-      margin-bottom: 25px;
+
+      font-size: 30px;
+
+      margin-bottom: 30px;
     }
 
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
       gap: 18px;
     }
 
     .feature {
       background: white;
-      padding: 22px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+
+      padding: 27px 20px;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+
+      border: 1px solid #e9edf3;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-7px);
+
+      box-shadow:
+        0 15px 30px rgba(0,0,0,0.09);
     }
 
     .feature-icon {
-      font-size: 35px;
-      margin-bottom: 10px;
+      font-size: 34px;
+
+      margin-bottom: 12px;
+
+      display: inline-block;
+
+      animation: featureFloat 3s ease-in-out infinite;
+    }
+
+    .feature:nth-child(2) .feature-icon {
+      animation-delay: 0.5s;
+    }
+
+    .feature:nth-child(3) .feature-icon {
+      animation-delay: 1s;
+    }
+
+    .feature:nth-child(4) .feature-icon {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes featureFloat {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+
     }
 
     .feature h3 {
       color: #173b72;
+
       margin-bottom: 8px;
+
+      font-size: 17px;
     }
 
     .feature p {
-      color: #666;
+      color: #687386;
+
       font-size: 14px;
+
+      line-height: 1.5;
     }
 
-    /* ================= FOOTER ================= */
+
+    /* =====================================================
+       CTA
+    ===================================================== */
+
+    .cta {
+      max-width: 1000px;
+
+      margin: 80px auto;
+
+      padding: 50px 25px;
+
+      border-radius: 24px;
+
+      text-align: center;
+
+      color: white;
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #173b72,
+          #2868b2
+        );
+
+      box-shadow:
+        0 15px 40px rgba(23,59,114,0.18);
+    }
+
+    .cta::before {
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      right: -80px;
+      top: -80px;
+    }
+
+    .cta h2 {
+      position: relative;
+
+      font-size: 28px;
+
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      position: relative;
+
+      opacity: 0.9;
+
+      line-height: 1.6;
+
+      margin-bottom: 22px;
+    }
+
+    .cta button {
+      position: relative;
+
+      border: none;
+
+      padding: 12px 23px;
+
+      border-radius: 9px;
+
+      background: white;
+
+      color: #173b72;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .cta button:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 10px 25px rgba(0,0,0,0.2);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
-      background: #173b72;
+      background: #102e5d;
+
       color: white;
+
       text-align: center;
-      padding: 25px 15px;
-      margin-top: 50px;
+
+      padding: 30px 15px;
+
+      margin-top: 70px;
     }
 
     footer p {
-      margin: 6px 0;
+      margin: 7px 0;
+
       font-size: 14px;
+
+      opacity: 0.9;
     }
 
-    /* ================= MOBILE ================= */
+    .footer-brand {
+      font-size: 18px;
 
-    @media (max-width: 600px) {
+      font-weight: 800;
 
-      header {
-        padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+
+    /* =====================================================
+       ANIMATION
+    ===================================================== */
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(25px);
       }
 
-      .site-name {
-        font-size: 16px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+      header {
+        height: 66px;
+
+        padding: 8px 14px;
       }
 
       .logo-area img {
@@ -323,69 +1179,233 @@ content="width=device-width, initial-scale=1.0">
         height: 40px;
       }
 
-      /* Hide desktop buttons */
+      .site-name {
+        font-size: 16px;
+      }
 
       .auth-buttons {
         display: none;
       }
 
-      /* Show hamburger */
-
       .menu-toggle {
         display: block;
       }
 
+      .mobile-menu {
+        top: 66px;
+      }
+
       .hero {
-        padding: 45px 15px;
+        min-height: 560px;
+
+        padding:
+          65px 18px
+          70px;
       }
 
       .hero h1 {
-        font-size: 27px;
+        font-size: 38px;
+
+        letter-spacing: -1px;
       }
 
       .hero p {
         font-size: 15px;
+
+        line-height: 1.7;
+      }
+
+      .hero-badge {
+        font-size: 12px;
+      }
+
+      .floating-icon {
+        font-size: 25px;
+      }
+
+      .icon-one {
+        left: 6%;
+        top: 18%;
+      }
+
+      .icon-two {
+        right: 6%;
+        top: 20%;
+      }
+
+      .icon-three {
+        left: 8%;
+        bottom: 12%;
+      }
+
+      .icon-four {
+        right: 9%;
+        bottom: 14%;
+      }
+
+      .about {
+        margin: 35px 13px;
+
+        padding:
+          28px 18px;
+      }
+
+      .about h2 {
+        font-size: 24px;
+      }
+
+      .about p {
+        font-size: 14px;
+      }
+
+      .courses-section {
+        margin: 55px auto;
+
+        padding: 0 13px;
+      }
+
+      .courses-section h2 {
+        font-size: 27px;
       }
 
       .course-grid {
         grid-template-columns: 1fr 1fr;
+
         gap: 12px;
       }
 
       .course-card {
-        padding: 18px 10px;
+        padding:
+          20px 10px;
       }
 
       .course-icon {
-        font-size: 38px;
+        width: 58px;
+        height: 58px;
+
+        font-size: 29px;
+
+        border-radius: 15px;
       }
 
       .course-card h3 {
-        font-size: 15px;
+        font-size: 14px;
       }
 
       .course-card p {
-        font-size: 12px;
+        font-size: 11px;
+
+        min-height: 68px;
       }
 
       .course-button {
-        font-size: 12px;
-        padding: 8px 12px;
-      }
+        font-size: 11px;
 
-      .about {
-        margin: 25px 12px;
-        padding: 20px 15px;
+        padding:
+          8px 10px;
       }
 
       .features {
-        margin: 35px auto;
-        padding: 0 12px;
+        margin: 60px auto;
+
+        padding: 0 13px;
+      }
+
+      .features h2 {
+        font-size: 26px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+      }
+
+      .feature {
+        padding: 20px 12px;
+      }
+
+      .feature-icon {
+        font-size: 29px;
+      }
+
+      .feature h3 {
+        font-size: 14px;
+      }
+
+      .feature p {
+        font-size: 11px;
+      }
+
+      .cta {
+        margin:
+          55px 13px
+          50px;
+
+        padding:
+          38px 18px;
+      }
+
+      .cta h2 {
+        font-size: 24px;
+      }
+
+      .cta p {
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 40px;
       }
 
     }
 
-  </style></head><body>  <!-- ================= HEADER ================= -->  <header><div class="logo-area">
+
+    /* VERY SMALL PHONES */
+
+    @media (max-width: 380px) {
+
+      .site-name {
+        font-size: 14px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    /* REDUCED MOTION */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+      }
+
+    }
+
+  </style></head><body>  <!-- =====================================================
+       HEADER
+  ===================================================== -->  <header><div class="logo-area"
+     onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
   <img
     src="logo.png"
@@ -398,7 +1418,7 @@ content="width=device-width, initial-scale=1.0">
 </div>
 
 
-<!-- DESKTOP BUTTONS -->
+<!-- DESKTOP -->
 
 <div class="auth-buttons">
 
@@ -409,7 +1429,6 @@ content="width=device-width, initial-scale=1.0">
     Login
 
   </button>
-
 
   <button
     class="signup-btn"
@@ -426,63 +1445,114 @@ content="width=device-width, initial-scale=1.0">
 
 <button
   class="menu-toggle"
+  id="menuToggle"
   onclick="toggleMenu()"
-  aria-label="Open menu">
+  aria-label="Open menu"
+  aria-expanded="false">
 
-  ☰
+  <span></span>
+  <span></span>
+  <span></span>
 
 </button>
 
-  </header>  <!-- ================= MOBILE MENU ================= -->  <nav
-    id="mobileMenu"
-    class="mobile-menu"><button onclick="goToLogin()">
-  🔐 Login
+  </header>  <!-- =====================================================
+       MOBILE MENU
+  ===================================================== -->  <nav
+    class="mobile-menu"
+    id="mobileMenu"><button onclick="goToLogin()">
+  🔐 &nbsp; Login
 </button>
 
 <button onclick="goToSignup()">
-  ✍️ Sign Up
+  ✍️ &nbsp; Sign Up
 </button>
 
 <button onclick="scrollToCourses()">
-  📚 Courses
+  📚 &nbsp; Courses
 </button>
 
-  </nav>  <!-- ================= HERO ================= -->  <section class="hero"><h1>
-  Learn. Practice. Succeed.
-</h1>
+  </nav>  <!-- =====================================================
+       HERO
+  ===================================================== -->  <section class="hero"><div class="floating-icon icon-one">
+  📚
+</div>
 
-<p>
-  Welcome to Study With Julfikar — a learning platform
-  designed to help students prepare for school,
-  competitive examinations and higher studies.
-</p>
+<div class="floating-icon icon-two">
+  🎓
+</div>
 
-<button
-  class="hero-button"
-  onclick="scrollToCourses()">
+<div class="floating-icon icon-three">
+  ✏️
+</div>
 
-  📚 Explore Courses
+<div class="floating-icon icon-four">
+  🧠
+</div>
 
-</button>
 
-  </section>  <!-- ================= ABOUT ================= -->  <section class="about"><h2>
-  📖 About Our Platform
+<div class="hero-content">
+
+  <div class="hero-badge">
+    🎓 Learn • Practice • Succeed
+  </div>
+
+  <h1>
+    <span>Learn. Practice. Succeed.</span>
+  </h1>
+
+  <p>
+    Welcome to Study With Julfikar —
+    a learning platform designed to help
+    students prepare for school,
+    competitive examinations and
+    higher studies.
+  </p>
+
+  <button
+    class="hero-button"
+    onclick="scrollToCourses()">
+
+    📚 Explore Courses
+    <span> →</span>
+
+  </button>
+
+</div>
+
+  </section>  <!-- =====================================================
+       ABOUT
+  ===================================================== -->  <section class="about"><div class="section-label">
+  About Us
+</div>
+
+<h2>
+  📖 Your Learning Journey Starts Here
 </h2>
 
 <p>
-  Study With Julfikar provides structured study materials,
-  chapter-wise learning resources and practice opportunities
-  for students. Select your course below and start learning.
+  Study With Julfikar provides structured
+  study materials, chapter-wise learning
+  resources and practice opportunities
+  for students. Choose a course below
+  and start learning at your own pace.
 </p>
 
-  </section>  <!-- ================= COURSES ================= -->  <section
+  </section>  <!-- =====================================================
+       COURSES
+  ===================================================== -->  <section
     class="courses-section"
-    id="courses"><h2>
-  📚 Our Courses
+    id="courses"><div class="section-label">
+  Our Learning Programs
+</div>
+
+<h2>
+  📚 Explore Our Courses
 </h2>
 
 <p class="section-description">
-  Choose your course to begin your learning journey.
+  Choose your course and begin your
+  learning journey.
 </p>
 
 
@@ -509,7 +1579,7 @@ content="width=device-width, initial-scale=1.0">
     </p>
 
     <button class="course-button">
-      Start Learning
+      Start Learning →
     </button>
 
   </div>
@@ -535,7 +1605,7 @@ content="width=device-width, initial-scale=1.0">
     </p>
 
     <button class="course-button">
-      Start Learning
+      Start Learning →
     </button>
 
   </div>
@@ -561,7 +1631,7 @@ content="width=device-width, initial-scale=1.0">
     </p>
 
     <button class="course-button">
-      Start Learning
+      Start Learning →
     </button>
 
   </div>
@@ -587,7 +1657,7 @@ content="width=device-width, initial-scale=1.0">
     </p>
 
     <button class="course-button">
-      Start Learning
+      Start Learning →
     </button>
 
   </div>
@@ -613,7 +1683,7 @@ content="width=device-width, initial-scale=1.0">
     </p>
 
     <button class="course-button">
-      Start Learning
+      Start Learning →
     </button>
 
   </div>
@@ -621,8 +1691,14 @@ content="width=device-width, initial-scale=1.0">
 
 </div>
 
-  </section>  <!-- ================= FEATURES ================= -->  <section class="features"><h2>
-  ⭐ Why Choose Us?
+  </section>  <!-- =====================================================
+       FEATURES
+  ===================================================== -->  <section class="features"><div class="section-label">
+  Why Study With Us
+</div>
+
+<h2>
+  ⭐ Everything You Need to Learn
 </h2>
 
 
@@ -703,18 +1779,43 @@ content="width=device-width, initial-scale=1.0">
 
 </div>
 
-  </section>  <!-- ================= FOOTER ================= -->  <footer><p>
-  © 2026 Study With Julfikar
+  </section>  <!-- =====================================================
+       CALL TO ACTION
+  ===================================================== -->  <section class="cta"><h2>
+  Ready to Start Learning?
+</h2>
+
+<p>
+  Create your account and begin
+  your learning journey today.
 </p>
+
+<button onclick="goToSignup()">
+  ✨ Create Your Account
+</button>
+
+  </section>  <!-- =====================================================
+       FOOTER
+  ===================================================== -->  <footer><div class="footer-brand">
+  Study With Julfikar
+</div>
 
 <p>
   Learn Today • Succeed Tomorrow
 </p>
 
-  </footer>  <!-- ================= JAVASCRIPT ================= -->  <script>
+<p>
+  © 2026 Study With Julfikar
+</p>
+
+  </footer>  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->  <script>
 
 
-    /* SCROLL TO COURSES */
+    /* =====================================================
+       SCROLL TO COURSES
+    ===================================================== */
 
     function scrollToCourses() {
 
@@ -729,7 +1830,9 @@ content="width=device-width, initial-scale=1.0">
     }
 
 
-    /* LOGIN */
+    /* =====================================================
+       LOGIN
+    ===================================================== */
 
     function goToLogin() {
 
@@ -739,7 +1842,9 @@ content="width=device-width, initial-scale=1.0">
     }
 
 
-    /* SIGN UP */
+    /* =====================================================
+       SIGN UP
+    ===================================================== */
 
     function goToSignup() {
 
@@ -749,7 +1854,9 @@ content="width=device-width, initial-scale=1.0">
     }
 
 
-    /* OPEN COURSE */
+    /* =====================================================
+       OPEN COURSE
+    ===================================================== */
 
     function openCourse(course) {
 
@@ -759,38 +1866,61 @@ content="width=device-width, initial-scale=1.0">
     }
 
 
-    /* TOGGLE MOBILE MENU */
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
     function toggleMenu() {
 
       const menu =
         document.getElementById("mobileMenu");
 
-      if (menu.style.display === "block") {
+      const toggle =
+        document.getElementById("menuToggle");
 
-        menu.style.display = "none";
+      const isOpen =
+        menu.classList.toggle("open");
 
-      } else {
+      toggle.classList.toggle(
+        "active",
+        isOpen
+      );
 
-        menu.style.display = "block";
-
-      }
+      toggle.setAttribute(
+        "aria-expanded",
+        isOpen
+      );
 
     }
 
 
-    /* CLOSE MOBILE MENU */
+    /* =====================================================
+       CLOSE MENU
+    ===================================================== */
 
     function closeMenu() {
 
-      document
-        .getElementById("mobileMenu")
-        .style.display = "none";
+      const menu =
+        document.getElementById("mobileMenu");
+
+      const toggle =
+        document.getElementById("menuToggle");
+
+      menu.classList.remove("open");
+
+      toggle.classList.remove("active");
+
+      toggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
     }
 
 
-    /* CLOSE MENU WHEN CLICKING OUTSIDE */
+    /* =====================================================
+       CLOSE WHEN CLICKING OUTSIDE
+    ===================================================== */
 
     document.addEventListener(
       "click",
@@ -799,13 +1929,13 @@ content="width=device-width, initial-scale=1.0">
         const menu =
           document.getElementById("mobileMenu");
 
-        const button =
-          document.querySelector(".menu-toggle");
+        const toggle =
+          document.getElementById("menuToggle");
 
         if (
-          menu.style.display === "block" &&
+          menu.classList.contains("open") &&
           !menu.contains(event.target) &&
-          !button.contains(event.target)
+          !toggle.contains(event.target)
         ) {
 
           closeMenu();
@@ -816,5 +1946,20 @@ content="width=device-width, initial-scale=1.0">
     );
 
 
-  </script></body>
-</html>
+    /* =====================================================
+       CLOSE MENU AFTER RESIZE
+    ===================================================== */
+
+    window.addEventListener(
+      "resize",
+      function() {
+
+        if (window.innerWidth > 700) {
+          closeMenu();
+        }
+
+      }
+    );
+
+
+  </script></body></html>
