@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <title>Study With Julfikar</title>  <link rel="icon" type="image/png" href="logo.png">  <style>
 
-  <title>Study With Julfikar</title>
-
-  <link rel="icon" type="image/png" href="logo.png">
-
-  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -23,7 +17,8 @@
       color: #222;
     }
 
-    /* HEADER */
+    /* ================= HEADER ================= */
+
     header {
       background: white;
       padding: 12px 20px;
@@ -55,6 +50,8 @@
       color: #173b72;
     }
 
+    /* DESKTOP AUTH BUTTONS */
+
     .auth-buttons {
       display: flex;
       gap: 8px;
@@ -79,7 +76,53 @@
       color: #173b72;
     }
 
-    /* HERO */
+    /* MOBILE MENU BUTTON */
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #173b72;
+      line-height: 1;
+    }
+
+    /* MOBILE MENU */
+
+    .mobile-menu {
+      display: none;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      padding: 10px 15px;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+    }
+
+    .mobile-menu button {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 8px;
+      background: #f0f4fa;
+      color: #173b72;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .mobile-menu button:hover {
+      background: #e2eaf7;
+    }
+
+    /* ================= HERO ================= */
+
     .hero {
       text-align: center;
       padding: 55px 20px;
@@ -111,7 +154,8 @@
       cursor: pointer;
     }
 
-    /* ABOUT */
+    /* ================= ABOUT ================= */
+
     .about {
       max-width: 1000px;
       margin: 40px auto;
@@ -133,7 +177,8 @@
       color: #555;
     }
 
-    /* COURSES */
+    /* ================= COURSES ================= */
+
     .courses-section {
       max-width: 1100px;
       margin: 45px auto;
@@ -203,7 +248,8 @@
       font-weight: bold;
     }
 
-    /* FEATURES */
+    /* ================= FEATURES ================= */
+
     .features {
       max-width: 1000px;
       margin: 50px auto;
@@ -245,7 +291,8 @@
       font-size: 14px;
     }
 
-    /* FOOTER */
+    /* ================= FOOTER ================= */
+
     footer {
       background: #173b72;
       color: white;
@@ -259,7 +306,8 @@
       font-size: 14px;
     }
 
-    /* MOBILE */
+    /* ================= MOBILE ================= */
+
     @media (max-width: 600px) {
 
       header {
@@ -275,9 +323,16 @@
         height: 40px;
       }
 
-      .auth-buttons button {
-        padding: 8px 10px;
-        font-size: 12px;
+      /* Hide desktop buttons */
+
+      .auth-buttons {
+        display: none;
+      }
+
+      /* Show hamburger */
+
+      .menu-toggle {
+        display: block;
       }
 
       .hero {
@@ -317,352 +372,449 @@
         font-size: 12px;
         padding: 8px 12px;
       }
+
+      .about {
+        margin: 25px 12px;
+        padding: 20px 15px;
+      }
+
+      .features {
+        margin: 35px auto;
+        padding: 0 12px;
+      }
+
     }
-  </style>
-</head>
 
-<body>
+  </style></head><body>  <!-- ================= HEADER ================= -->  <header><div class="logo-area">
 
-  <!-- HEADER -->
-  <header>
+  <img
+    src="logo.png"
+    alt="Study With Julfikar Logo">
 
-    <div class="logo-area">
-      <img src="logo.png" alt="Study With Deepak Logo">
+  <div class="site-name">
+    Study With Julfikar
+  </div>
 
-      <div class="site-name">
-        Study With Julfikar
-      </div>
+</div>
+
+
+<!-- DESKTOP BUTTONS -->
+
+<div class="auth-buttons">
+
+  <button
+    class="login-btn"
+    onclick="goToLogin()">
+
+    Login
+
+  </button>
+
+
+  <button
+    class="signup-btn"
+    onclick="goToSignup()">
+
+    Sign Up
+
+  </button>
+
+</div>
+
+
+<!-- MOBILE HAMBURGER -->
+
+<button
+  class="menu-toggle"
+  onclick="toggleMenu()"
+  aria-label="Open menu">
+
+  ☰
+
+</button>
+
+  </header>  <!-- ================= MOBILE MENU ================= -->  <nav
+    id="mobileMenu"
+    class="mobile-menu"><button onclick="goToLogin()">
+  🔐 Login
+</button>
+
+<button onclick="goToSignup()">
+  ✍️ Sign Up
+</button>
+
+<button onclick="scrollToCourses()">
+  📚 Courses
+</button>
+
+  </nav>  <!-- ================= HERO ================= -->  <section class="hero"><h1>
+  Learn. Practice. Succeed.
+</h1>
+
+<p>
+  Welcome to Study With Julfikar — a learning platform
+  designed to help students prepare for school,
+  competitive examinations and higher studies.
+</p>
+
+<button
+  class="hero-button"
+  onclick="scrollToCourses()">
+
+  📚 Explore Courses
+
+</button>
+
+  </section>  <!-- ================= ABOUT ================= -->  <section class="about"><h2>
+  📖 About Our Platform
+</h2>
+
+<p>
+  Study With Julfikar provides structured study materials,
+  chapter-wise learning resources and practice opportunities
+  for students. Select your course below and start learning.
+</p>
+
+  </section>  <!-- ================= COURSES ================= -->  <section
+    class="courses-section"
+    id="courses"><h2>
+  📚 Our Courses
+</h2>
+
+<p class="section-description">
+  Choose your course to begin your learning journey.
+</p>
+
+
+<div class="course-grid">
+
+
+  <!-- UPPER PRIMARY -->
+
+  <div
+    class="course-card"
+    onclick="openCourse('upper-primary')">
+
+    <div class="course-icon">
+      📐
     </div>
 
-    <div class="auth-buttons">
-      <button class="login-btn"
-              onclick="goToLogin()">
-        Login
-      </button>
-
-      <button class="signup-btn"
-              onclick="goToSignup()">
-        Sign Up
-      </button>
-    </div>
-
-  </header>
-
-
-  <!-- HERO SECTION -->
-  <section class="hero">
-
-    <h1>Learn. Practice. Succeed.</h1>
+    <h3>
+      Upper Primary
+    </h3>
 
     <p>
-      Welcome to Study With Julfikar — a learning platform
-      designed to help students prepare for school,
-      competitive examinations and higher studies.
+      Mathematics and other subjects
+      for Upper Primary students.
     </p>
 
-    <button class="hero-button"
-            onclick="scrollToCourses()">
-      📚 Explore Courses
+    <button class="course-button">
+      Start Learning
     </button>
 
-  </section>
+  </div>
 
 
-  <!-- ABOUT SECTION -->
-  <section class="about">
+  <!-- WBSSC IX-X -->
 
-    <h2>📖 About Our Platform</h2>
+  <div
+    class="course-card"
+    onclick="openCourse('wbssc-ix-x')">
 
-    <p>
-      Study With Julfikar provides structured study materials,
-      chapter-wise learning resources and practice opportunities
-      for students. Select your course below and start learning.
-    </p>
-
-  </section>
-
-
-  <!-- COURSES -->
-  <section class="courses-section" id="courses">
-
-    <h2>📚 Our Courses</h2>
-
-    <p class="section-description">
-      Choose your course to begin your learning journey.
-    </p>
-
-
-    <div class="course-grid">
-
-
-      <!-- UPPER PRIMARY -->
-      <div class="course-card"
-           onclick="openCourse('upper-primary')">
-
-        <div class="course-icon">
-          📐
-        </div>
-
-        <h3>
-          Upper Primary
-        </h3>
-
-        <p>
-          Mathematics and other subjects
-          for Upper Primary students.
-        </p>
-
-        <button class="course-button">
-          Start Learning
-        </button>
-
-      </div>
-
-
-      <!-- WBSSC IX-X -->
-      <div class="course-card"
-           onclick="openCourse('wbssc-ix-x')">
-
-        <div class="course-icon">
-          📘
-        </div>
-
-        <h3>
-          WBSSC IX–X
-        </h3>
-
-        <p>
-          Study materials and preparation
-          for Classes IX and X.
-        </p>
-
-        <button class="course-button">
-          Start Learning
-        </button>
-
-      </div>
-
-
-      <!-- WBSSC XI-XII -->
-      <div class="course-card"
-           onclick="openCourse('wbssc-xi-xii')">
-
-        <div class="course-icon">
-          📚
-        </div>
-
-        <h3>
-          WBSSC XI–XII
-        </h3>
-
-        <p>
-          Higher secondary study materials
-          and chapter-wise preparation.
-        </p>
-
-        <button class="course-button">
-          Start Learning
-        </button>
-
-      </div>
-
-
-      <!-- SSC PSC -->
-      <div class="course-card"
-           onclick="openCourse('ssc-psc')">
-
-        <div class="course-icon">
-          📝
-        </div>
-
-        <h3>
-          SSC–PSC
-        </h3>
-
-        <p>
-          Practice and preparation for
-          competitive examinations.
-        </p>
-
-        <button class="course-button">
-          Start Learning
-        </button>
-
-      </div>
-
-
-      <!-- NET SET -->
-      <div class="course-card"
-           onclick="openCourse('net-set')">
-
-        <div class="course-icon">
-          🎓
-        </div>
-
-        <h3>
-          NET/SET
-        </h3>
-
-        <p>
-          Preparation resources for
-          NET and SET examinations.
-        </p>
-
-        <button class="course-button">
-          Start Learning
-        </button>
-
-      </div>
-
-
+    <div class="course-icon">
+      📘
     </div>
 
-  </section>
+    <h3>
+      WBSSC IX–X
+    </h3>
+
+    <p>
+      Study materials and preparation
+      for Classes IX and X.
+    </p>
+
+    <button class="course-button">
+      Start Learning
+    </button>
+
+  </div>
 
 
-  <!-- FEATURES -->
-  <section class="features">
+  <!-- WBSSC XI-XII -->
 
-    <h2>⭐ Why Choose Us?</h2>
+  <div
+    class="course-card"
+    onclick="openCourse('wbssc-xi-xii')">
 
-    <div class="feature-grid">
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          📖
-        </div>
-
-        <h3>
-          Chapter-wise Learning
-        </h3>
-
-        <p>
-          Learn systematically with
-          organized chapters.
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🧠
-        </div>
-
-        <h3>
-          Practice
-        </h3>
-
-        <p>
-          Improve your preparation through
-          practice and revision.
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          📱
-        </div>
-
-        <h3>
-          Mobile Friendly
-        </h3>
-
-        <p>
-          Study easily from your
-          smartphone or computer.
-        </p>
-
-      </div>
-
-
-      <div class="feature">
-
-        <div class="feature-icon">
-          🔒
-        </div>
-
-        <h3>
-          Student Account
-        </h3>
-
-        <p>
-          Create an account and access
-          your course materials.
-        </p>
-
-      </div>
-
+    <div class="course-icon">
+      📚
     </div>
 
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer>
+    <h3>
+      WBSSC XI–XII
+    </h3>
 
     <p>
-      © 2026 Study With Julfikar
+      Higher secondary study materials
+      and chapter-wise preparation.
     </p>
+
+    <button class="course-button">
+      Start Learning
+    </button>
+
+  </div>
+
+
+  <!-- SSC PSC -->
+
+  <div
+    class="course-card"
+    onclick="openCourse('ssc-psc')">
+
+    <div class="course-icon">
+      📝
+    </div>
+
+    <h3>
+      SSC–PSC
+    </h3>
 
     <p>
-      Learn Today • Succeed Tomorrow
+      Practice and preparation for
+      competitive examinations.
     </p>
 
-  </footer>
+    <button class="course-button">
+      Start Learning
+    </button>
+
+  </div>
 
 
-  <!-- JAVASCRIPT -->
-  <script>
+  <!-- NET SET -->
+
+  <div
+    class="course-card"
+    onclick="openCourse('net-set')">
+
+    <div class="course-icon">
+      🎓
+    </div>
+
+    <h3>
+      NET/SET
+    </h3>
+
+    <p>
+      Preparation resources for
+      NET and SET examinations.
+    </p>
+
+    <button class="course-button">
+      Start Learning
+    </button>
+
+  </div>
+
+
+</div>
+
+  </section>  <!-- ================= FEATURES ================= -->  <section class="features"><h2>
+  ⭐ Why Choose Us?
+</h2>
+
+
+<div class="feature-grid">
+
+
+  <div class="feature">
+
+    <div class="feature-icon">
+      📖
+    </div>
+
+    <h3>
+      Chapter-wise Learning
+    </h3>
+
+    <p>
+      Learn systematically with
+      organized chapters.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">
+      🧠
+    </div>
+
+    <h3>
+      Practice
+    </h3>
+
+    <p>
+      Improve your preparation through
+      practice and revision.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">
+      📱
+    </div>
+
+    <h3>
+      Mobile Friendly
+    </h3>
+
+    <p>
+      Study easily from your
+      smartphone or computer.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <div class="feature-icon">
+      🔒
+    </div>
+
+    <h3>
+      Student Account
+    </h3>
+
+    <p>
+      Create an account and access
+      your course materials.
+    </p>
+
+  </div>
+
+
+</div>
+
+  </section>  <!-- ================= FOOTER ================= -->  <footer><p>
+  © 2026 Study With Julfikar
+</p>
+
+<p>
+  Learn Today • Succeed Tomorrow
+</p>
+
+  </footer>  <!-- ================= JAVASCRIPT ================= -->  <script>
+
+
+    /* SCROLL TO COURSES */
 
     function scrollToCourses() {
 
-      document.getElementById("courses")
+      document
+        .getElementById("courses")
         .scrollIntoView({
           behavior: "smooth"
         });
 
+      closeMenu();
+
     }
 
+
+    /* LOGIN */
 
     function goToLogin() {
 
-      window.location.href = "login.html";
+      window.location.href =
+        "login.html";
 
     }
 
+
+    /* SIGN UP */
 
     function goToSignup() {
 
-      window.location.href = "signup.html";
+      window.location.href =
+        "signup.html";
 
     }
 
 
+    /* OPEN COURSE */
+
     function openCourse(course) {
-
-      /*
-        For now, all courses go to the login page.
-
-        Later we will create:
-        student login
-        signup
-        course page
-        chapter page
-        payment system
-      */
 
       window.location.href =
         "login.html?course=" + course;
 
     }
 
-  </script>
 
-</body>
+    /* TOGGLE MOBILE MENU */
+
+    function toggleMenu() {
+
+      const menu =
+        document.getElementById("mobileMenu");
+
+      if (menu.style.display === "block") {
+
+        menu.style.display = "none";
+
+      } else {
+
+        menu.style.display = "block";
+
+      }
+
+    }
+
+
+    /* CLOSE MOBILE MENU */
+
+    function closeMenu() {
+
+      document
+        .getElementById("mobileMenu")
+        .style.display = "none";
+
+    }
+
+
+    /* CLOSE MENU WHEN CLICKING OUTSIDE */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        const menu =
+          document.getElementById("mobileMenu");
+
+        const button =
+          document.querySelector(".menu-toggle");
+
+        if (
+          menu.style.display === "block" &&
+          !menu.contains(event.target) &&
+          !button.contains(event.target)
+        ) {
+
+          closeMenu();
+
+        }
+
+      }
+    );
+
+
+  </script></body>
 </html>
