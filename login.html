@@ -1,670 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-  <title>Login - Study With Julfikar</title>
+<meta name="description"
+      content="Study With Deepak Student Login">
 
-  <link rel="icon"
-        type="image/png"
-        href="logo.png">
+<title>Student Login - Study With Deepak</title>
 
-  <style>
+<link rel="icon"
+      type="image/png"
+      href="logo.png">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
 
-    body {
-      min-height: 100vh;
-      background: #f5f7fb;
-      display: flex;
-      flex-direction: column;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* HEADER */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 
-    header {
-      background: white;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+  background:
+    linear-gradient(
+      135deg,
+      #102e5d,
+      #173b72,
+      #2868b2
+    );
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .logo-area img {
-      width: 45px;
-      height: 45px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
+  padding: 20px;
+}
 
-    .site-name {
-      color: #173b72;
-      font-size: 20px;
-      font-weight: bold;
-    }
+.login-wrapper {
+  width: 100%;
+  max-width: 440px;
+}
 
-    .home-button {
-      background: #e8eef9;
-      color: #173b72;
-      border: none;
-      padding: 9px 15px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.logo {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
 
-    /* LOGIN AREA */
+.logo img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 18px;
+  margin-bottom: 10px;
+}
 
-    .login-container {
-      width: 100%;
-      max-width: 450px;
-      margin: 45px auto;
-      padding: 20px;
-    }
+.logo h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
 
-    .login-box {
-      background: white;
-      padding: 30px 25px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
+.logo p {
+  font-size: 14px;
+  opacity: 0.85;
+}
 
-    .login-title {
-      text-align: center;
-      color: #173b72;
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.login-card {
+  background: white;
+  border-radius: 22px;
+  padding: 32px 26px;
 
-    .login-subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 25px;
-      font-size: 14px;
-    }
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.22);
 
-    /* ACCOUNT TYPE */
+  animation: appear 0.6s ease;
+}
 
-    .account-types {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-    }
+@keyframes appear {
 
-    .account-type {
-      flex: 1;
-      padding: 15px 8px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      background: white;
-      cursor: pointer;
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
-      color: #555;
-    }
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
 
-    .account-type.active {
-      border-color: #173b72;
-      background: #eef3fb;
-      color: #173b72;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .account-type .icon {
-      display: block;
-      font-size: 30px;
-      margin-bottom: 5px;
-    }
+}
 
-    /* FORM */
+.login-title {
+  text-align: center;
+  color: #173b72;
+  margin-bottom: 8px;
+  font-size: 25px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 7px;
-      color: #333;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.login-subtitle {
+  text-align: center;
+  color: #687386;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 17px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 15px;
-      outline: none;
-    }
+.form-group {
+  margin-bottom: 18px;
+}
 
-    input:focus {
-      border-color: #173b72;
-    }
+.form-group label {
+  display: block;
+  color: #173b72;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
 
-    .password-row {
-      position: relative;
-    }
+.form-group input {
+  width: 100%;
+  padding: 13px 14px;
 
-    .password-row input {
-      padding-right: 55px;
-    }
+  border: 1px solid #d8e0ec;
+  border-radius: 10px;
 
-    .show-password {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 13px;
-      color: #173b72;
-    }
+  font-size: 15px;
+  outline: none;
 
-    .login-button {
-      width: 100%;
-      padding: 13px;
-      background: #173b72;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
 
-    .login-button:hover {
-      opacity: 0.9;
-    }
+.form-group input:focus {
+  border-color: #2868b2;
 
-    .forgot {
-      text-align: right;
-      margin: 8px 0 18px;
-    }
+  box-shadow:
+    0 0 0 3px rgba(40,104,178,0.12);
+}
 
-    .forgot a {
-      color: #173b72;
-      text-decoration: none;
-      font-size: 13px;
-    }
+.password-box {
+  position: relative;
+}
 
-    /* SIGN UP */
+.password-box input {
+  padding-right: 80px;
+}
 
-    .signup-text {
-      text-align: center;
-      margin-top: 22px;
-      color: #666;
-      font-size: 14px;
-    }
+.show-password {
+  position: absolute;
 
-    .signup-link {
-      color: #173b72;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-    }
+  right: 10px;
+  top: 50%;
 
-    /* COURSE MESSAGE */
+  transform: translateY(-50%);
 
-    #courseMessage {
-      display: none;
-      background: #eef3fb;
-      color: #173b72;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
+  border: none;
+  background: transparent;
 
-    /* FOOTER */
+  color: #2868b2;
 
-    footer {
-      margin-top: auto;
-      background: #173b72;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
-    }
+  font-weight: 700;
+  font-size: 12px;
 
-    /* MOBILE */
+  cursor: pointer;
+}
 
-    @media (max-width: 500px) {
+.login-button {
+  width: 100%;
 
-      .site-name {
-        font-size: 16px;
-      }
+  border: none;
+  border-radius: 10px;
 
-      .login-container {
-        margin: 25px auto;
-        padding: 12px;
-      }
+  padding: 14px;
 
-      .login-box {
-        padding: 25px 18px;
-      }
+  background: #173b72;
+  color: white;
 
-      .login-title {
-        font-size: 24px;
-      }
+  font-size: 16px;
+  font-weight: 800;
 
-    }
+  cursor: pointer;
 
-  </style>
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.login-button:hover {
+  background: #2868b2;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(23,59,114,0.25);
+}
+
+.login-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.status {
+  display: none;
+
+  margin-top: 18px;
+
+  padding: 12px 14px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+.status.error {
+  display: block;
+
+  background: #fff0f0;
+  color: #b42318;
+
+  border: 1px solid #f3c2c2;
+}
+
+.status.success {
+  display: block;
+
+  background: #eefbf2;
+  color: #18753c;
+
+  border: 1px solid #bfe5c9;
+}
+
+.register {
+  text-align: center;
+
+  margin-top: 22px;
+
+  color: #687386;
+
+  font-size: 14px;
+}
+
+.register a {
+  color: #173b72;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  display: block;
+
+  text-align: center;
+
+  margin-top: 18px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  opacity: 0.9;
+}
+
+.back-home:hover {
+  opacity: 1;
+}
+
+.course-message {
+  display: none;
+
+  margin-bottom: 20px;
+
+  padding: 12px;
+
+  background: #edf3fb;
+
+  border-radius: 10px;
+
+  color: #173b72;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .login-card {
+    padding: 27px 20px;
+  }
+
+  .logo h1 {
+    font-size: 23px;
+  }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
+<div class="login-wrapper">
 
-  <!-- HEADER -->
+  <div class="logo">
 
-  <header>
+    <img
+      src="logo.png"
+      alt="Study With Deepak Logo">
 
-    <div class="logo-area">
+    <h1>
+      Study With Deepak
+    </h1>
 
-      <img src="logo.png"
-           alt="Study With Julfikar Logo">
+    <p>
+      Learn • Practice • Succeed
+    </p>
 
-      <div class="site-name">
-        Study With Julfikar
-      </div>
+  </div>
 
+
+  <div class="login-card">
+
+    <h2 class="login-title">
+      🎓 Student Login
+    </h2>
+
+    <p class="login-subtitle">
+      Login to access your learning dashboard
+    </p>
+
+
+    <div
+      class="course-message"
+      id="courseMessage">
     </div>
 
-    <button class="home-button"
-            onclick="goHome()">
 
-      🏠 Home
+    <form id="loginForm">
 
-    </button>
+      <div class="form-group">
 
-  </header>
-
-
-
-  <!-- LOGIN -->
-
-  <main class="login-container">
-
-    <div class="login-box">
-
-      <h1 class="login-title">
-        Welcome Back
-      </h1>
-
-      <p class="login-subtitle">
-        Login to continue your learning
-      </p>
-
-
-      <!-- COURSE MESSAGE -->
-
-      <div id="courseMessage"></div>
-
-
-      <!-- ACCOUNT TYPE -->
-
-      <div class="account-types">
-
-        <button class="account-type active"
-                id="studentType"
-                onclick="selectAccount('student')">
-
-          <span class="icon">👨‍🎓</span>
-
-          Student
-
-        </button>
-
-
-        <button class="account-type"
-                id="teacherType"
-                onclick="selectAccount('teacher')">
-
-          <span class="icon">👨‍🏫</span>
-
-          Teacher
-
-        </button>
-
-      </div>
-
-
-      <!-- LOGIN FORM -->
-
-      <form onsubmit="login(event)">
-
-        <label for="email">
-          Email / Username
+        <label for="identifier">
+          Username or Email
         </label>
 
         <input
           type="text"
-          id="email"
-          placeholder="Enter your email or username"
-          required
-        >
+          id="identifier"
+          name="identifier"
+          placeholder="Enter username or email"
+          autocomplete="username"
+          required>
 
+      </div>
+
+
+      <div class="form-group">
 
         <label for="password">
           Password
         </label>
 
-        <div class="password-row">
+        <div class="password-box">
 
           <input
             type="password"
             id="password"
+            name="password"
             placeholder="Enter your password"
-            required
-          >
+            autocomplete="current-password"
+            required>
 
           <button
             type="button"
             class="show-password"
             onclick="togglePassword()">
 
-            Show
+            SHOW
 
           </button>
 
         </div>
 
-
-        <div class="forgot">
-
-          <a href="#"
-             onclick="forgotPassword(event)">
-
-            Forgot Password?
-
-          </a>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="login-button">
-
-          🔐 Login
-
-        </button>
-
-      </form>
-
-
-      <!-- SIGN UP -->
-
-      <div class="signup-text">
-
-        Don't have an account?
-
-        <a class="signup-link"
-           onclick="goSignup()">
-
-          Sign Up
-
-        </a>
-
       </div>
+
+
+      <button
+        type="submit"
+        class="login-button"
+        id="loginButton">
+
+        🔐 Login
+
+      </button>
+
+    </form>
+
+
+    <div
+      id="status"
+      class="status">
+    </div>
+
+
+    <div class="register">
+
+      Don't have an account?
+
+      <a href="signup.html">
+        Create Student Account
+      </a>
 
     </div>
 
-  </main>
+  </div>
 
 
+  <a
+    href="index.html"
+    class="back-home">
 
-  <!-- FOOTER -->
+    ← Back to Home
 
-  <footer>
+  </a>
 
-    © 2026 Study With Julfikar
-
-  </footer>
-
-
-
-  <script>
-
-    /* DEFAULT ACCOUNT TYPE */
-
-    let accountType = "student";
+</div>
 
 
-    /* COURSE FROM HOME PAGE */
+<script>
 
-    const urlParams =
-      new URLSearchParams(window.location.search);
+/* ============================================================
+   API
+============================================================ */
 
-    const selectedCourse =
-      urlParams.get("course");
-
-
-    if (selectedCourse) {
-
-      const courseNames = {
-
-        "upper-primary":
-          "📐 Upper Primary",
-
-        "wbssc-ix-x":
-          "📘 WBSSC IX–X",
-
-        "wbssc-xi-xii":
-          "📚 WBSSC XI–XII",
-
-        "ssc-psc":
-          "📝 SSC–PSC",
-
-        "net-set":
-          "🎓 NET/SET"
-
-      };
+const API_URL =
+  "https://study-with-deepak-api.deepakmahatobist.workers.dev";
 
 
-      if (courseNames[selectedCourse]) {
+/* ============================================================
+   COURSE FROM URL
+============================================================ */
 
-        const message =
-          document.getElementById("courseMessage");
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
-        message.textContent =
-          "You selected: " +
-          courseNames[selectedCourse];
-
-        message.style.display = "block";
-
-      }
-
-    }
+const selectedCourse =
+  params.get("course");
 
 
-    /* SELECT STUDENT / TEACHER */
+const courseNames = {
 
-    function selectAccount(type) {
+  "upper-primary":
+    "Upper Primary",
 
-      accountType = type;
+  "wbssc-ix-x":
+    "WBSSC IX–X",
 
+  "wbssc-xi-xii":
+    "WBSSC XI–XII",
 
-      document
-        .getElementById("studentType")
-        .classList.remove("active");
+  "ssc-psc":
+    "SSC–PSC",
 
-      document
-        .getElementById("teacherType")
-        .classList.remove("active");
+  "net-set":
+    "NET/SET"
 
-
-      if (type === "student") {
-
-        document
-          .getElementById("studentType")
-          .classList.add("active");
-
-      } else {
-
-        document
-          .getElementById("teacherType")
-          .classList.add("active");
-
-      }
-
-    }
+};
 
 
-    /* PASSWORD SHOW / HIDE */
+if (
+  selectedCourse &&
+  courseNames[selectedCourse]
+) {
 
-    function togglePassword() {
+  const message =
+    document.getElementById(
+      "courseMessage"
+    );
 
-      const password =
-        document.getElementById("password");
+  message.style.display = "block";
 
-      const button =
-        document.querySelector(".show-password");
+  message.innerHTML =
+    "📚 You selected <strong>" +
+    courseNames[selectedCourse] +
+    "</strong>.<br>" +
+    "Login to continue.";
 
-
-      if (password.type === "password") {
-
-        password.type = "text";
-        button.textContent = "Hide";
-
-      } else {
-
-        password.type = "password";
-        button.textContent = "Show";
-
-      }
-
-    }
+}
 
 
-    /* LOGIN */
+/* ============================================================
+   PASSWORD
+============================================================ */
 
-    function login(event) {
+function togglePassword() {
+
+  const password =
+    document.getElementById(
+      "password"
+    );
+
+  const button =
+    document.querySelector(
+      ".show-password"
+    );
+
+  if (
+    password.type === "password"
+  ) {
+
+    password.type = "text";
+
+    button.textContent = "HIDE";
+
+  } else {
+
+    password.type = "password";
+
+    button.textContent = "SHOW";
+
+  }
+
+}
+
+
+/* ============================================================
+   STATUS
+============================================================ */
+
+function showStatus(
+  message,
+  type
+) {
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+  status.className =
+    "status " + type;
+
+  status.textContent =
+    message;
+
+}
+
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+document
+  .getElementById("loginForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
 
       event.preventDefault();
 
 
-      const username =
-        document.getElementById("email").value.trim();
+      const identifier =
+        document
+          .getElementById("identifier")
+          .value
+          .trim();
 
       const password =
-        document.getElementById("password").value;
+        document
+          .getElementById("password")
+          .value;
 
 
-      if (!username || !password) {
+      const button =
+        document.getElementById(
+          "loginButton"
+        );
 
-        alert("Please enter your login details.");
+
+      if (
+        !identifier ||
+        !password
+      ) {
+
+        showStatus(
+          "Please enter your username/email and password.",
+          "error"
+        );
 
         return;
 
       }
 
 
-      /*
-        TEMPORARY LOGIN
+      button.disabled = true;
 
-        This is only the front-end version.
-
-        Later we will connect this to a
-        secure database/authentication system.
-      */
+      button.textContent =
+        "⏳ Logging in...";
 
 
-      if (accountType === "student") {
-
-        alert(
-          "Student login selected.\n\n" +
-          "Student Dashboard will be connected next."
-        );
-
-        /*
-        Later:
-
-        window.location.href =
-          "student-dashboard.html";
-        */
-
-      } else {
-
-        alert(
-          "Teacher login selected.\n\n" +
-          "Teacher Dashboard will be connected next."
-        );
-
-        /*
-        Later:
-
-        window.location.href =
-          "teacher-dashboard.html";
-        */
-
-      }
-
-    }
-
-
-    /* SIGN UP */
-
-    function goSignup() {
-
-      let url = "signup.html";
-
-      if (selectedCourse) {
-
-        url += "?course=" +
-          encodeURIComponent(selectedCourse);
-
-      }
-
-      window.location.href = url;
-
-    }
-
-
-    /* FORGOT PASSWORD */
-
-    function forgotPassword(event) {
-
-      event.preventDefault();
-
-      alert(
-        "Password recovery will be added " +
-        "when we connect the secure authentication system."
+      showStatus(
+        "Connecting to Study With Deepak...",
+        "success"
       );
 
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + "/api/login",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                username:
+                  identifier,
+
+                password:
+                  password
+
+              })
+
+            }
+          );
+
+
+        let result;
+
+        try {
+
+          result =
+            await response.json();
+
+        } catch {
+
+          throw new Error(
+            "The server returned an invalid response."
+          );
+
+        }
+
+
+        if (
+          !response.ok ||
+          !result.success
+        ) {
+
+          throw new Error(
+            result.error ||
+            "Login failed."
+          );
+
+        }
+
+
+        /*
+         * SAVE LOGIN INFORMATION
+         */
+
+        localStorage.setItem(
+          "studyWithDeepakToken",
+          result.token
+        );
+
+
+        localStorage.setItem(
+          "studyWithDeepakUser",
+          JSON.stringify(
+            result.user
+          )
+        );
+
+
+        if (selectedCourse) {
+
+          localStorage.setItem(
+            "studyWithDeepakSelectedCourse",
+            selectedCourse
+          );
+
+        }
+
+
+        showStatus(
+          "Login successful! Opening your student dashboard...",
+          "success"
+        );
+
+
+        /*
+         * REDIRECT
+         */
+
+        setTimeout(
+          function() {
+
+            window.location.href =
+              "student-dashboard.html";
+
+          },
+          800
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
+
+
+        showStatus(
+          error.message ||
+          "Unable to connect to the server.",
+          "error"
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+          "🔐 Login";
+
+      }
+
     }
+  );
 
-
-    /* HOME */
-
-    function goHome() {
-
-      window.location.href = "index.html";
-
-    }
-
-  </script>
-
+</script>
 
 </body>
-
-  </html>
+</html>
