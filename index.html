@@ -1,1 +1,1875 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Sign Up - Study With Julfikar</title> <link rel="icon" type="image/png" href="logo.png"> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; } body { min-height: 100vh; background: #f5f7fb; display: flex; flex-direction: column; } header { background: white; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.1); } .logo-area { display: flex; align-items: center; gap: 10px; } .logo-area img { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; } .site-name { color: #173b72; font-size: 20px; font-weight: bold; } .home-button { background: #e8eef9; color: #173b72; border: none; padding: 9px 15px; border-radius: 7px; cursor: pointer; font-weight: bold; } .signup-container { width: 100%; max-width: 500px; margin: 35px auto; padding: 20px; } .signup-box { background: white; padding: 30px 25px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); } .signup-title { text-align: center; color: #173b72; font-size: 28px; margin-bottom: 8px; } .signup-subtitle { text-align: center; color: #666; margin-bottom: 25px; font-size: 14px; } .account-types { display: flex; gap: 10px; margin-bottom: 25px; } .account-type { flex: 1; padding: 15px 8px; border: 2px solid #ddd; border-radius: 10px; background: white; cursor: pointer; text-align: center; font-size: 15px; font-weight: bold; color: #555; } .account-type.active { border-color: #173b72; background: #eef3fb; color: #173b72; } .account-type .icon { display: block; font-size: 30px; margin-bottom: 5px; } #courseMessage { display: none; background: #eef3fb; color: #173b72; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 14px; } label { display: block; margin-bottom: 7px; color: #333; font-weight: bold; font-size: 14px; } input, select { width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; background: white; } input:focus, select:focus { border-color: #173b72; } .password-row { position: relative; } .password-row input { padding-right: 55px; } .show-password { position: absolute; right: 10px; top: 10px; border: none; background: transparent; cursor: pointer; font-size: 13px; color: #173b72; } .teacher-notice { display: none; background: #fff6df; border-left: 4px solid #e0a400; padding: 12px; border-radius: 7px; margin-bottom: 20px; color: #665000; font-size: 13px; line-height: 1.5; } .signup-button { width: 100%; padding: 13px; background: #173b72; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; } .signup-button:disabled { opacity: 0.6; cursor: not-allowed; } .login-text { text-align: center; margin-top: 22px; color: #666; font-size: 14px; } .login-link { color: #173b72; font-weight: bold; cursor: pointer; text-decoration: none; } footer { margin-top: auto; background: #173b72; color: white; text-align: center; padding: 20px; font-size: 13px; } @media (max-width: 500px) { .site-name { font-size: 16px; } .signup-container { margin: 20px auto; padding: 12px; } .signup-box { padding: 25px 18px; } .signup-title { font-size: 24px; } } </style> </head> <body> <!-- HEADER --> <header> <div class="logo-area"> <img src="logo.png" alt="Study With Julfikar Logo"> <div class="site-name"> Study With Julfikar </div> </div> <button class="home-button" onclick="goHome()"> 🏠 Home </button> </header> <!-- SIGNUP --> <main class="signup-container"> <div class="signup-box"> <h1 class="signup-title"> Create Account </h1> <p class="signup-subtitle"> Join Study With Julfikar </p> <!-- COURSE MESSAGE --> <div id="courseMessage"></div> <!-- ACCOUNT TYPE --> <div class="account-types"> <button type="button" class="account-type active" id="studentType" onclick="selectAccount('student')"> <span class="icon">👨‍🎓</span> Student </button> <button type="button" class="account-type" id="teacherType" onclick="selectAccount('teacher')"> <span class="icon">👨‍🏫</span> Teacher </button> </div> <!-- TEACHER NOTICE --> <div id="teacherNotice" class="teacher-notice"> 👨‍🏫 <strong>Teacher Account:</strong><br> Teacher accounts will require verification before access to teacher tools is granted. </div> <!-- FORM --> <form onsubmit="createAccount(event)"> <!-- FULL NAME --> <label for="fullName"> Full Name </label> <input type="text" id="fullName" placeholder="Enter your full name" required > <!-- USERNAME --> <label for="username"> Username </label> <input type="text" id="username" placeholder="Choose a username" minlength="4" maxlength="30" required > <!-- EMAIL --> <label for="email"> Email Address </label> <input type="email" id="email" placeholder="Enter your email" required > <!-- STUDENT ONLY --> <div id="studentFields"> <label for="classLevel"> Class / Level </label> <select id="classLevel" required> <option value=""> Select your class </option> <option value="Upper Primary"> Upper Primary </option> <option value="Class IX"> Class IX </option> <option value="Class X"> Class X </option> <option value="Class XI"> Class XI </option> <option value="Class XII"> Class XII </option> <option value="SSC–PSC"> SSC–PSC </option> <option value="NET/SET"> NET/SET </option> </select> </div> <!-- TEACHER ONLY --> <div id="teacherFields" style="display:none;"> <label for="subject"> Subject </label> <input type="text" id="subject" placeholder="e.g. Mathematics" > <label for="qualification"> Qualification </label> <input type="text" id="qualification" placeholder="e.g. M.Sc., B.Ed." > </div> <!-- PASSWORD --> <label for="password"> Password </label> <div class="password-row"> <input type="password" id="password" placeholder="Create a password" minlength="8" required > <button type="button" class="show-password" onclick="togglePassword('password', this)"> Show </button> </div> <!-- CONFIRM PASSWORD --> <label for="confirmPassword"> Confirm Password </label> <div class="password-row"> <input type="password" id="confirmPassword" placeholder="Enter password again" minlength="8" required > <button type="button" class="show-password" onclick="togglePassword('confirmPassword', this)"> Show </button> </div> <!-- BUTTON --> <button type="submit" class="signup-button" id="signupButton"> ✨ Create Account </button> </form> <!-- LOGIN --> <div class="login-text"> Already have an account? <a class="login-link" onclick="goLogin()"> Login </a> </div> </div> </main> <!-- FOOTER --> <footer> © 2026 Study With Julfikar </footer> <script> /* =============================== CONFIGURATION =============================== */ const API_URL = "https://study-with-deepak-api.deepakmahatobist.workers.dev"; let accountType = "student"; /* =============================== COURSE FROM HOME PAGE =============================== */ const urlParams = new URLSearchParams(window.location.search); const selectedCourse = urlParams.get("course"); const courseNames = { "upper-primary": "📐 Upper Primary", "wbssc-ix-x": "📘 WBSSC IX–X", "wbssc-xi-xii": "📚 WBSSC XI–XII", "ssc-psc": "📝 SSC–PSC", "net-set": "🎓 NET/SET" }; if (selectedCourse && courseNames[selectedCourse]) { const message = document.getElementById("courseMessage"); message.textContent = "You selected: " + courseNames[selectedCourse]; message.style.display = "block"; } /* =============================== SELECT ACCOUNT =============================== */ function selectAccount(type) { accountType = type; document .getElementById("studentType") .classList.remove("active"); document .getElementById("teacherType") .classList.remove("active"); const studentFields = document.getElementById("studentFields"); const teacherFields = document.getElementById("teacherFields"); const teacherNotice = document.getElementById("teacherNotice"); if (type === "student") { document .getElementById("studentType") .classList.add("active"); studentFields.style.display = "block"; teacherFields.style.display = "none"; teacherNotice.style.display = "none"; document.getElementById("classLevel").required = true; document.getElementById("subject").required = false; document.getElementById("qualification").required = false; } else { document .getElementById("teacherType") .classList.add("active"); studentFields.style.display = "none"; teacherFields.style.display = "block"; teacherNotice.style.display = "block"; document.getElementById("classLevel").required = false; document.getElementById("subject").required = true; document.getElementById("qualification").required = true; } } /* =============================== PASSWORD =============================== */ function togglePassword(id, button) { const password = document.getElementById(id); if (password.type === "password") { password.type = "text"; button.textContent = "Hide"; } else { password.type = "password"; button.textContent = "Show"; } } /* =============================== CREATE ACCOUNT =============================== */ async function createAccount(event) { event.preventDefault(); const button = document.getElementById("signupButton"); const fullName = document.getElementById("fullName").value.trim(); const username = document.getElementById("username").value.trim(); const email = document.getElementById("email").value.trim(); const classLevel = document.getElementById("classLevel").value; const subject = document.getElementById("subject").value.trim(); const qualification = document.getElementById("qualification").value.trim(); const password = document.getElementById("password").value; const confirmPassword = document.getElementById("confirmPassword").value; /* PASSWORD CHECK */ if (password !== confirmPassword) { alert("Passwords do not match."); return; } if (password.length < 8) { alert( "Password must contain at least 8 characters." ); return; } /* DISABLE BUTTON */ button.disabled = true; button.textContent = "Creating account..."; try { /* SEND DATA TO CLOUDFLARE WORKER */ const response = await fetch( API_URL + "/api/signup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ full_name: fullName, username: username, email: email, password: password, account_type: accountType, class_level: accountType === "student" ? classLevel : "", subject: accountType === "teacher" ? subject : "", qualification: accountType === "teacher" ? qualification : "", course_slug: accountType === "student" ? selectedCourse || "" : "" }) } ); /* READ RESPONSE */ const result = await response.json(); /* ERROR */ if (!response.ok || !result.success) { throw new Error( result.error || "Account creation failed." ); } /* =============================== SUCCESS =============================== */ if (accountType === "teacher") { alert( "Teacher account created successfully!\n\n" + "Your account is now waiting for verification.\n\n" + "You will be able to access teacher tools after approval." ); } else { alert( "Student account created successfully!\n\n" + "You can now log in to Study With Deepak." ); } /* GO TO LOGIN */ let loginUrl = "login.html"; if (selectedCourse) { loginUrl += "?course=" + encodeURIComponent(selectedCourse); } window.location.href = loginUrl; } catch (error) { console.error(error); alert( "Account creation failed.\n\n" + error.message ); } finally { button.disabled = false; button.textContent = "✨ Create Account"; } } /* =============================== LOGIN =============================== */ function goLogin() { let url = "login.html"; if (selectedCourse) { url += "?course=" + encodeURIComponent(selectedCourse); } window.location.href = url; } /* =============================== HOME =============================== */ function goHome() { window.location.href = "index.html"; } </script> </body> </html>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Study With Deepak — Online learning platform for school students and competitive examination preparation.">
+
+  <meta name="theme-color"
+        content="#2563eb">
+
+  <title>Study With Deepak | Learn • Prepare • Succeed</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 12px 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      font-weight: 800;
+      font-size: 20px;
+      color: #0f172a;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+
+      object-fit: contain;
+
+      border-radius: 10px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+      );
+
+      color: white;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: #475569;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 9px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+
+      padding: 10px 17px;
+
+      font-weight: 700;
+      font-size: 14px;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+
+      box-shadow:
+        0 8px 20px rgba(37,99,235,.20);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-outline {
+      background: white;
+      color: #2563eb;
+
+      border: 1px solid #bfdbfe;
+    }
+
+    .btn-outline:hover {
+      background: #eff6ff;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(59,130,246,.14),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(124,58,237,.14),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #f8fbff 100%
+        );
+    }
+
+    .hero-container {
+      max-width: 1180px;
+      margin: auto;
+
+      min-height: 610px;
+
+      padding: 85px 20px 80px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+
+      align-items: center;
+      gap: 55px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      background: #eff6ff;
+      color: #1d4ed8;
+
+      padding: 8px 13px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.04;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #2563eb;
+    }
+
+    .hero p {
+      max-width: 650px;
+
+      color: #64748b;
+
+      font-size: 18px;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-actions .btn {
+      padding: 13px 21px;
+      font-size: 15px;
+    }
+
+    .hero-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      margin-top: 30px;
+    }
+
+    .hero-info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero-info-item strong {
+      color: #0f172a;
+    }
+
+    /* =========================
+       HERO CARD
+    ========================== */
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .learning-card {
+      position: relative;
+
+      background: white;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 24px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 25px 70px rgba(15,23,42,.12);
+
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 25px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .live {
+      background: #dcfce7;
+      color: #15803d;
+
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .course-progress {
+      margin-bottom: 20px;
+    }
+
+    .course-progress-header {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 8px;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 9px;
+
+      background: #e2e8f0;
+
+      border-radius: 999px;
+
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 72%;
+
+      background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+      );
+
+      border-radius: inherit;
+    }
+
+    .lesson-list {
+      display: grid;
+      gap: 10px;
+
+      margin-top: 25px;
+    }
+
+    .lesson {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding: 12px;
+
+      border-radius: 12px;
+
+      background: #f8fafc;
+
+      border: 1px solid #eef2f7;
+    }
+
+    .lesson-icon {
+      width: 34px;
+      height: 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #dbeafe;
+      color: #2563eb;
+
+      border-radius: 9px;
+
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .lesson-text {
+      flex: 1;
+    }
+
+    .lesson-text strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .lesson-text small {
+      color: #94a3b8;
+      font-size: 11px;
+    }
+
+    .check {
+      color: #22c55e;
+      font-weight: 900;
+    }
+
+    /* =========================
+       STATS
+    ========================== */
+
+    .stats {
+      background: #0f172a;
+      color: white;
+    }
+
+    .stats-container {
+      max-width: 1180px;
+      margin: auto;
+
+      padding: 34px 20px;
+
+      display: grid;
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+
+      padding: 8px;
+    }
+
+    .stat strong {
+      display: block;
+
+      font-size: 30px;
+
+      margin-bottom: 3px;
+    }
+
+    .stat span {
+      color: #94a3b8;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       GENERAL SECTION
+    ========================== */
+
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+
+      padding: 85px 20px;
+    }
+
+    .section-heading {
+      text-align: center;
+
+      max-width: 720px;
+
+      margin:
+        0 auto 45px;
+    }
+
+    .section-heading .label {
+      display: inline-block;
+
+      color: #2563eb;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 9px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(28px,4vw,42px);
+
+      line-height: 1.15;
+
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: #64748b;
+    }
+
+    /* =========================
+       COURSES
+    ========================== */
+
+    .courses {
+      background: white;
+    }
+
+    .course-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5,1fr);
+
+      gap: 18px;
+    }
+
+    .course-card {
+      background: white;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 17px;
+
+      padding: 23px;
+
+      display: flex;
+      flex-direction: column;
+
+      min-height: 270px;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+
+      border-color: #bfdbfe;
+
+      box-shadow:
+        0 18px 45px rgba(15,23,42,.10);
+    }
+
+    .course-icon {
+      width: 50px;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #eff6ff;
+      color: #2563eb;
+
+      border-radius: 13px;
+
+      font-size: 22px;
+
+      margin-bottom: 18px;
+    }
+
+    .course-card h3 {
+      font-size: 17px;
+
+      margin-bottom: 8px;
+    }
+
+    .course-card p {
+      color: #64748b;
+
+      font-size: 13px;
+
+      flex: 1;
+    }
+
+    .course-link {
+      color: #2563eb;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      margin-top: 18px;
+    }
+
+    /* =========================
+       FEATURES
+    ========================== */
+
+    .feature-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 20px;
+    }
+
+    .feature {
+      padding: 28px;
+
+      background: white;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 18px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: #f1f5f9;
+
+      font-size: 21px;
+
+      margin-bottom: 18px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+
+      font-size: 17px;
+    }
+
+    .feature p {
+      color: #64748b;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================== */
+
+    .steps {
+      background: #f1f5f9;
+    }
+
+    .step-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 25px;
+    }
+
+    .step {
+      position: relative;
+
+      text-align: center;
+
+      padding: 25px;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+
+      margin: 0 auto 17px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #2563eb;
+
+      color: white;
+
+      border-radius: 50%;
+
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 17px;
+
+      margin-bottom: 7px;
+    }
+
+    .step p {
+      color: #64748b;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       CTA
+    ========================== */
+
+    .cta-section {
+      padding: 0 20px 85px;
+    }
+
+    .cta {
+      max-width: 1140px;
+      margin: auto;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1d4ed8,
+          #4f46e5
+        );
+
+      color: white;
+
+      border-radius: 25px;
+
+      padding: 55px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 55px rgba(37,99,235,.22);
+    }
+
+    .cta h2 {
+      font-size: clamp(27px,4vw,40px);
+
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      max-width: 650px;
+
+      margin: 0 auto 25px;
+
+      color: #dbeafe;
+    }
+
+    .cta .btn {
+      background: white;
+      color: #1d4ed8;
+
+      padding: 13px 22px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #020617;
+
+      color: #cbd5e1;
+    }
+
+    .footer-container {
+      max-width: 1180px;
+      margin: auto;
+
+      padding: 45px 20px 25px;
+
+      display: grid;
+
+      grid-template-columns:
+        1.5fr 1fr 1fr;
+
+      gap: 40px;
+    }
+
+    .footer-brand {
+      font-size: 20px;
+      font-weight: 800;
+
+      color: white;
+
+      margin-bottom: 10px;
+    }
+
+    .footer-about {
+      color: #94a3b8;
+
+      font-size: 13px;
+
+      max-width: 400px;
+    }
+
+    .footer-column h4 {
+      color: white;
+
+      font-size: 14px;
+
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+
+      color: #94a3b8;
+
+      font-size: 13px;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1180px;
+      margin: auto;
+
+      padding:
+        18px 20px 25px;
+
+      border-top:
+        1px solid #1e293b;
+
+      color: #64748b;
+
+      font-size: 12px;
+
+      display: flex;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 1000px) {
+
+      .course-grid {
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions,
+      .hero-info {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 600px;
+        width: 100%;
+        margin: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .nav {
+        min-height: 65px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .brand img,
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .nav-buttons .btn {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
+      .hero-container {
+        min-height: auto;
+
+        padding-top: 60px;
+        padding-bottom: 65px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .stats-container {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .course-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .feature-grid,
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 65px 20px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-container > :first-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .nav-buttons .btn-outline {
+        display: none;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .learning-card {
+        padding: 20px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <nav class="nav">
+
+      <a href="index.html"
+         class="brand">
+
+        <img
+          src="logo.png"
+          alt="Study With Deepak"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+
+        <span
+          class="brand-icon"
+          style="display:none;">
+          SD
+        </span>
+
+        <span>Study With Deepak</span>
+
+      </a>
+
+      <div class="nav-links">
+
+        <a href="#courses">
+          Courses
+        </a>
+
+        <a href="#features">
+          Features
+        </a>
+
+        <a href="#how-it-works">
+          How It Works
+        </a>
+
+      </div>
+
+      <div class="nav-buttons">
+
+        <button
+          class="btn btn-outline"
+          onclick="goToLogin()">
+          Login
+        </button>
+
+        <button
+          class="btn btn-primary"
+          onclick="goToSignup()">
+          Sign Up
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-container">
+
+        <div class="hero-content">
+
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Online Learning Platform
+          </div>
+
+          <h1>
+            Learn smarter.
+            <br>
+            <span>Prepare better.</span>
+          </h1>
+
+          <p>
+            Study With Deepak helps students prepare for
+            school examinations and competitive examinations
+            through organized courses and learning resources.
+          </p>
+
+          <div class="hero-actions">
+
+            <button
+              class="btn btn-primary"
+              onclick="goToSignup()">
+              Create Student Account
+            </button>
+
+            <button
+              class="btn btn-outline"
+              onclick="goToLogin()">
+              Student Login
+            </button>
+
+          </div>
+
+          <div class="hero-info">
+
+            <div class="hero-info-item">
+              ✓ <strong>Student Accounts</strong>
+            </div>
+
+            <div class="hero-info-item">
+              ✓ <strong>Multiple Courses</strong>
+            </div>
+
+            <div class="hero-info-item">
+              ✓ <strong>Online Learning</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <div class="learning-card">
+
+            <div class="card-top">
+
+              <div class="card-title">
+                Student Learning
+              </div>
+
+              <div class="live">
+                ACTIVE
+              </div>
+
+            </div>
+
+
+            <div class="course-progress">
+
+              <div class="course-progress-header">
+
+                <span>
+                  Current Course
+                </span>
+
+                <span>
+                  72%
+                </span>
+
+              </div>
+
+              <div class="progress-bar">
+
+                <div class="progress"></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="lesson-list">
+
+              <div class="lesson">
+
+                <div class="lesson-icon">
+                  📚
+                </div>
+
+                <div class="lesson-text">
+
+                  <strong>
+                    Study Materials
+                  </strong>
+
+                  <small>
+                    Course resources
+                  </small>
+
+                </div>
+
+                <div class="check">
+                  ✓
+                </div>
+
+              </div>
+
+
+              <div class="lesson">
+
+                <div class="lesson-icon">
+                  📝
+                </div>
+
+                <div class="lesson-text">
+
+                  <strong>
+                    Practice Questions
+                  </strong>
+
+                  <small>
+                    Test your knowledge
+                  </small>
+
+                </div>
+
+                <div class="check">
+                  ✓
+                </div>
+
+              </div>
+
+
+              <div class="lesson">
+
+                <div class="lesson-icon">
+                  🎯
+                </div>
+
+                <div class="lesson-text">
+
+                  <strong>
+                    Exam Preparation
+                  </strong>
+
+                  <small>
+                    Prepare with confidence
+                  </small>
+
+                </div>
+
+                <div class="check">
+                  ✓
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================== -->
+
+    <section class="stats">
+
+      <div class="stats-container">
+
+        <div class="stat">
+          <strong>5+</strong>
+          <span>Learning Programs</span>
+        </div>
+
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Online Access</span>
+        </div>
+
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Student Focused</span>
+        </div>
+
+        <div class="stat">
+          <strong>1</strong>
+          <span>Learning Platform</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COURSES
+    ========================== -->
+
+    <section
+      class="courses"
+      id="courses">
+
+      <div class="section">
+
+        <div class="section-heading">
+
+          <span class="label">
+            Our Programs
+          </span>
+
+          <h2>
+            Choose your learning path
+          </h2>
+
+          <p>
+            Select a course and create your student
+            account to continue your learning journey.
+          </p>
+
+        </div>
+
+
+        <div class="course-grid">
+
+
+          <!-- COURSE 1 -->
+
+          <article class="course-card">
+
+            <div class="course-icon">
+              📖
+            </div>
+
+            <h3>
+              Upper Primary
+            </h3>
+
+            <p>
+              Learning resources and preparation
+              for upper primary students.
+            </p>
+
+            <a
+              href="signup.html?course=upper-primary"
+              class="course-link">
+              Start Course →
+            </a>
+
+          </article>
+
+
+          <!-- COURSE 2 -->
+
+          <article class="course-card">
+
+            <div class="course-icon">
+              🎓
+            </div>
+
+            <h3>
+              WBSSC IX–X
+            </h3>
+
+            <p>
+              Preparation resources for
+              Class IX and X examinations.
+            </p>
+
+            <a
+              href="signup.html?course=wbssc-ix-x"
+              class="course-link">
+              Start Course →
+            </a>
+
+          </article>
+
+
+          <!-- COURSE 3 -->
+
+          <article class="course-card">
+
+            <div class="course-icon">
+              📘
+            </div>
+
+            <h3>
+              WBSSC XI–XII
+            </h3>
+
+            <p>
+              Structured preparation for
+              Class XI and XII students.
+            </p>
+
+            <a
+              href="signup.html?course=wbssc-xi-xii"
+              class="course-link">
+              Start Course →
+            </a>
+
+          </article>
+
+
+          <!-- COURSE 4 -->
+
+          <article class="course-card">
+
+            <div class="course-icon">
+              🏆
+            </div>
+
+            <h3>
+              SSC–PSC
+            </h3>
+
+            <p>
+              Preparation resources for
+              SSC and PSC examinations.
+            </p>
+
+            <a
+              href="signup.html?course=ssc-psc"
+              class="course-link">
+              Start Course →
+            </a>
+
+          </article>
+
+
+          <!-- COURSE 5 -->
+
+          <article class="course-card">
+
+            <div class="course-icon">
+              🧠
+            </div>
+
+            <h3>
+              NET–SET
+            </h3>
+
+            <p>
+              Study resources for NET and
+              SET examination preparation.
+            </p>
+
+            <a
+              href="signup.html?course=net-set"
+              class="course-link">
+              Start Course →
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section
+      id="features">
+
+      <div class="section">
+
+        <div class="section-heading">
+
+          <span class="label">
+            Why Study With Deepak
+          </span>
+
+          <h2>
+            Everything organized for learning
+          </h2>
+
+          <p>
+            The platform is designed to make learning
+            simple, organized and accessible.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              📚
+            </div>
+
+            <h3>
+              Organized Courses
+            </h3>
+
+            <p>
+              Access your learning programs through
+              a structured online platform.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🔐
+            </div>
+
+            <h3>
+              Student Account
+            </h3>
+
+            <p>
+              Create your own account and securely
+              access your student area.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              📱
+            </div>
+
+            <h3>
+              Mobile Friendly
+            </h3>
+
+            <p>
+              Study from your phone, tablet or
+              computer whenever you need.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              📝
+            </div>
+
+            <h3>
+              Practice
+            </h3>
+
+            <p>
+              Practice questions and learning activities
+              can be added to each course.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🎯
+            </div>
+
+            <h3>
+              Exam Preparation
+            </h3>
+
+            <p>
+              Focused resources for school and
+              competitive examination preparation.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🚀
+            </div>
+
+            <h3>
+              Growing Platform
+            </h3>
+
+            <p>
+              New courses, materials and student
+              features can be added over time.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section
+      class="steps"
+      id="how-it-works">
+
+      <div class="section">
+
+        <div class="section-heading">
+
+          <span class="label">
+            Simple Process
+          </span>
+
+          <h2>
+            Start learning in three steps
+          </h2>
+
+          <p>
+            Getting started with Study With Deepak
+            takes only a few simple steps.
+          </p>
+
+        </div>
+
+
+        <div class="step-grid">
+
+
+          <div class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <h3>
+              Create Account
+            </h3>
+
+            <p>
+              Register your student account using
+              your name, username, email and password.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <h3>
+              Choose Course
+            </h3>
+
+            <p>
+              Select the learning program that
+              matches your study goal.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <h3>
+              Start Learning
+            </h3>
+
+            <p>
+              Log in and access your student
+              dashboard and course resources.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta-section">
+
+      <div class="cta">
+
+        <h2>
+          Ready to start learning?
+        </h2>
+
+        <p>
+          Create your Study With Deepak student account
+          and begin your preparation.
+        </p>
+
+        <button
+          class="btn"
+          onclick="goToSignup()">
+          Create Student Account
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-container">
+
+
+      <div>
+
+        <div class="footer-brand">
+          Study With Deepak
+        </div>
+
+        <p class="footer-about">
+          An online learning platform for students,
+          school preparation and competitive examination
+          preparation.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>
+          Platform
+        </h4>
+
+        <a href="#courses">
+          Courses
+        </a>
+
+        <a href="#features">
+          Features
+        </a>
+
+        <a href="#how-it-works">
+          How It Works
+        </a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>
+          Account
+        </h4>
+
+        <a href="login.html">
+          Student Login
+        </a>
+
+        <a href="signup.html">
+          Student Sign Up
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © <span id="year"></span>
+        Study With Deepak. All rights reserved.
+      </span>
+
+      <span>
+        Learn • Prepare • Succeed
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    function goToLogin() {
+      window.location.href = "login.html";
+    }
+
+
+    function goToSignup() {
+      window.location.href = "signup.html";
+    }
+
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /*
+      If a student is already logged in,
+      keep the existing login session.
+    */
+
+    const token =
+      localStorage.getItem(
+        "studyWithDeepakToken"
+      );
+
+
+    /*
+      We intentionally do NOT automatically
+      redirect logged-in users.
+
+      This allows students to continue viewing
+      the homepage.
+    */
+
+  </script>
+
+</body>
+</html>
+```
