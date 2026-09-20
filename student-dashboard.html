@@ -1,0 +1,1585 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color"
+        content="#2563eb">
+
+  <meta name="description"
+        content="Study With Deepak Student Dashboard">
+
+  <title>Student Dashboard | Study With Deepak</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      background: #f1f5f9;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,.97);
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+
+      min-height: 70px;
+
+      padding: 10px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 18px;
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+
+      object-fit: contain;
+
+      border-radius: 10px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      color: white;
+
+      border-radius: 10px;
+
+      font-weight: 900;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .welcome-small {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .logout-btn {
+      border: none;
+
+      background: #fee2e2;
+      color: #b91c1c;
+
+      padding: 9px 14px;
+
+      border-radius: 9px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .logout-btn:hover {
+      background: #fecaca;
+    }
+
+    /* =========================
+       PAGE
+    ========================== */
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+
+      padding: 35px 20px 60px;
+    }
+
+    /* =========================
+       WELCOME
+    ========================== */
+
+    .welcome {
+      background:
+        linear-gradient(
+          135deg,
+          #1d4ed8,
+          #4f46e5
+        );
+
+      color: white;
+
+      border-radius: 22px;
+
+      padding: 35px;
+
+      margin-bottom: 25px;
+
+      box-shadow:
+        0 20px 45px
+        rgba(37,99,235,.18);
+    }
+
+    .welcome-label {
+      font-size: 13px;
+
+      color: #dbeafe;
+
+      margin-bottom: 5px;
+    }
+
+    .welcome h1 {
+      font-size:
+        clamp(26px,4vw,38px);
+
+      line-height: 1.15;
+
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #dbeafe;
+
+      max-width: 650px;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       LOADING
+    ========================== */
+
+    .loading {
+      background: white;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 16px;
+
+      padding: 25px;
+
+      text-align: center;
+
+      color: #64748b;
+
+      margin-bottom: 25px;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+
+      border: 3px solid #dbeafe;
+      border-top-color: #2563eb;
+
+      border-radius: 50%;
+
+      animation:
+        spin .8s linear infinite;
+
+      margin:
+        0 auto 10px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       ERROR
+    ========================== */
+
+    .error-box {
+      display: none;
+
+      background: #fef2f2;
+
+      border:
+        1px solid #fecaca;
+
+      color: #991b1b;
+
+      padding: 16px;
+
+      border-radius: 12px;
+
+      margin-bottom: 25px;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       GRID
+    ========================== */
+
+    .dashboard-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.35fr .65fr;
+
+      gap: 22px;
+
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 18px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 8px 25px
+        rgba(15,23,42,.04);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 22px;
+    }
+
+    .card-header h2 {
+      font-size: 19px;
+    }
+
+    .card-header span {
+      color: #64748b;
+
+      font-size: 12px;
+    }
+
+    /* =========================
+       PROFILE
+    ========================== */
+
+    .profile {
+      display: grid;
+
+      grid-template-columns:
+        80px 1fr;
+
+      gap: 18px;
+
+      align-items: center;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dbeafe,
+          #ede9fe
+        );
+
+      color: #2563eb;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .profile-name {
+      font-size: 20px;
+
+      font-weight: 800;
+
+      margin-bottom: 4px;
+    }
+
+    .profile-username {
+      color: #64748b;
+
+      font-size: 13px;
+    }
+
+    .details {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 12px;
+
+      margin-top: 22px;
+    }
+
+    .detail {
+      padding: 13px;
+
+      background: #f8fafc;
+
+      border-radius: 11px;
+    }
+
+    .detail-label {
+      color: #94a3b8;
+
+      font-size: 11px;
+
+      margin-bottom: 3px;
+    }
+
+    .detail-value {
+      font-size: 13px;
+
+      font-weight: 700;
+
+      word-break: break-word;
+    }
+
+    /* =========================
+       COURSE
+    ========================== */
+
+    .course-card {
+      background:
+        linear-gradient(
+          135deg,
+          #eff6ff,
+          #f5f3ff
+        );
+
+      border:
+        1px solid #dbeafe;
+
+      border-radius: 15px;
+
+      padding: 20px;
+    }
+
+    .course-icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: white;
+
+      border-radius: 12px;
+
+      font-size: 22px;
+
+      margin-bottom: 15px;
+
+      box-shadow:
+        0 5px 15px
+        rgba(15,23,42,.07);
+    }
+
+    .course-card h3 {
+      font-size: 18px;
+
+      margin-bottom: 6px;
+    }
+
+    .course-card p {
+      color: #64748b;
+
+      font-size: 13px;
+
+      margin-bottom: 17px;
+    }
+
+    .course-btn {
+      width: 100%;
+
+      border: none;
+
+      background: #2563eb;
+
+      color: white;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      font-weight: 800;
+
+      font-size: 13px;
+    }
+
+    .course-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* =========================
+       QUICK ACTIONS
+    ========================== */
+
+    .quick-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 15px;
+    }
+
+    .quick-action {
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 15px;
+
+      padding: 20px;
+
+      text-align: center;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .quick-action:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.07);
+    }
+
+    .quick-icon {
+      width: 46px;
+      height: 46px;
+
+      margin: 0 auto 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #eff6ff;
+
+      border-radius: 12px;
+
+      font-size: 20px;
+    }
+
+    .quick-action h3 {
+      font-size: 14px;
+
+      margin-bottom: 4px;
+    }
+
+    .quick-action p {
+      color: #94a3b8;
+
+      font-size: 11px;
+    }
+
+    /* =========================
+       NOTICE
+    ========================== */
+
+    .notice {
+      margin-top: 25px;
+
+      background: #fffbeb;
+
+      border:
+        1px solid #fde68a;
+
+      color: #92400e;
+
+      border-radius: 14px;
+
+      padding: 17px;
+
+      font-size: 13px;
+    }
+
+    .notice strong {
+      display: block;
+
+      margin-bottom: 4px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #020617;
+
+      color: #64748b;
+
+      text-align: center;
+
+      padding: 25px 20px;
+
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: #cbd5e1;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 850px) {
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .welcome {
+        padding: 27px;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .nav {
+        padding:
+          9px 15px;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .brand img,
+      .brand-icon {
+        width: 35px;
+        height: 35px;
+      }
+
+      .welcome-small {
+        display: none;
+      }
+
+      .container {
+        padding:
+          20px 14px 45px;
+      }
+
+      .welcome {
+        border-radius: 17px;
+
+        padding: 24px 20px;
+      }
+
+      .profile {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .avatar {
+        width: 60px;
+        height: 60px;
+
+        font-size: 22px;
+      }
+
+      .profile-name {
+        font-size: 17px;
+      }
+
+      .details {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+      }
+
+      .quick-action {
+        padding: 15px 10px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <nav class="nav">
+
+      <a
+        href="index.html"
+        class="brand">
+
+        <img
+          src="logo.png"
+          alt="Study With Deepak"
+          onerror="
+            this.style.display='none';
+            this.nextElementSibling.style.display='flex';
+          "
+        >
+
+        <span
+          class="brand-icon"
+          style="display:none;">
+          SD
+        </span>
+
+        <span>
+          Study With Deepak
+        </span>
+
+      </a>
+
+
+      <div class="nav-right">
+
+        <span
+          class="welcome-small"
+          id="topWelcome">
+          Student
+        </span>
+
+        <button
+          class="logout-btn"
+          onclick="logout()">
+          Logout
+        </button>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main>
+
+    <div class="container">
+
+
+      <!-- LOADING -->
+
+      <div
+        class="loading"
+        id="loading">
+
+        <div class="spinner"></div>
+
+        Loading your student dashboard...
+
+      </div>
+
+
+      <!-- ERROR -->
+
+      <div
+        class="error-box"
+        id="errorBox">
+      </div>
+
+
+      <!-- DASHBOARD -->
+
+      <div id="dashboard"
+           style="display:none;">
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+          <div class="welcome-label">
+            Student Dashboard
+          </div>
+
+          <h1>
+            Welcome,
+            <span id="welcomeName">
+              Student
+            </span>
+            👋
+          </h1>
+
+          <p>
+            Welcome to Study With Deepak.
+            Your learning journey starts here.
+          </p>
+
+        </section>
+
+
+        <!-- PROFILE + COURSE -->
+
+        <div class="dashboard-grid">
+
+
+          <!-- PROFILE -->
+
+          <section class="card">
+
+            <div class="card-header">
+
+              <h2>
+                My Profile
+              </h2>
+
+              <span>
+                Account Information
+              </span>
+
+            </div>
+
+
+            <div class="profile">
+
+              <div
+                class="avatar"
+                id="avatar">
+                S
+              </div>
+
+
+              <div>
+
+                <div
+                  class="profile-name"
+                  id="profileName">
+                  Student
+                </div>
+
+                <div
+                  class="profile-username"
+                  id="profileUsername">
+                  @username
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="details">
+
+
+              <div class="detail">
+
+                <div class="detail-label">
+                  Email
+                </div>
+
+                <div
+                  class="detail-value"
+                  id="profileEmail">
+                  —
+                </div>
+
+              </div>
+
+
+              <div class="detail">
+
+                <div class="detail-label">
+                  Account Type
+                </div>
+
+                <div
+                  class="detail-value"
+                  id="profileType">
+                  —
+                </div>
+
+              </div>
+
+
+              <div class="detail">
+
+                <div class="detail-label">
+                  Class / Level
+                </div>
+
+                <div
+                  class="detail-value"
+                  id="profileClass">
+                  —
+                </div>
+
+              </div>
+
+
+              <div class="detail">
+
+                <div class="detail-label">
+                  Member Since
+                </div>
+
+                <div
+                  class="detail-value"
+                  id="profileDate">
+                  —
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </section>
+
+
+          <!-- COURSE -->
+
+          <section class="card">
+
+            <div class="card-header">
+
+              <h2>
+                My Course
+              </h2>
+
+            </div>
+
+
+            <div class="course-card">
+
+              <div class="course-icon">
+                📚
+              </div>
+
+              <h3
+                id="courseName">
+                My Learning Course
+              </h3>
+
+              <p
+                id="courseDescription">
+                Your selected course will appear here.
+              </p>
+
+              <button
+                class="course-btn"
+                onclick="openCourse()">
+                Open Course
+              </button>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="card">
+
+          <div class="card-header">
+
+            <h2>
+              Learning Area
+            </h2>
+
+            <span>
+              Coming soon
+            </span>
+
+          </div>
+
+
+          <div class="quick-grid">
+
+
+            <div class="quick-action">
+
+              <div class="quick-icon">
+                📖
+              </div>
+
+              <h3>
+                Study Materials
+              </h3>
+
+              <p>
+                Course notes and resources
+              </p>
+
+            </div>
+
+
+            <div class="quick-action">
+
+              <div class="quick-icon">
+                📝
+              </div>
+
+              <h3>
+                Practice Questions
+              </h3>
+
+              <p>
+                Test your knowledge
+              </p>
+
+            </div>
+
+
+            <div class="quick-action">
+
+              <div class="quick-icon">
+                🎯
+              </div>
+
+              <h3>
+                Mock Tests
+              </h3>
+
+              <p>
+                Prepare for examinations
+              </p>
+
+            </div>
+
+
+            <div class="quick-action">
+
+              <div class="quick-icon">
+                📊
+              </div>
+
+              <h3>
+                My Progress
+              </h3>
+
+              <p>
+                Track your learning
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="notice">
+
+            <strong>
+              🚀 Learning features are being developed
+            </strong>
+
+            Your account and course system are already
+            connected. Study materials, tests and progress
+            tracking can be added next.
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    © <span id="year"></span>
+    <strong>Study With Deepak</strong>.
+    All rights reserved.
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       API
+    ========================== */
+
+    const API_URL =
+      "https://study-with-deepak-api.deepakmahatobist.workers.dev";
+
+
+    /* =========================
+       LOCAL STORAGE
+    ========================== */
+
+    const TOKEN_KEY =
+      "studyWithDeepakToken";
+
+    const USER_KEY =
+      "studyWithDeepakUser";
+
+    const COURSE_KEY =
+      "studyWithDeepakSelectedCourse";
+
+
+    /* =========================
+       COURSE INFORMATION
+    ========================== */
+
+    const courses = {
+
+      "upper-primary": {
+        name: "Upper Primary",
+        description:
+          "Upper Primary study materials and courses."
+      },
+
+      "wbssc-ix-x": {
+        name: "WBSSC IX–X",
+        description:
+          "WBSSC Class IX and X preparation."
+      },
+
+      "wbssc-xi-xii": {
+        name: "WBSSC XI–XII",
+        description:
+          "WBSSC Class XI and XII preparation."
+      },
+
+      "ssc-psc": {
+        name: "SSC–PSC",
+        description:
+          "SSC and PSC examination preparation."
+      },
+
+      "net-set": {
+        name: "NET–SET",
+        description:
+          "NET and SET examination preparation."
+      }
+
+    };
+
+
+    /* =========================
+       ELEMENTS
+    ========================== */
+
+    const loading =
+      document.getElementById("loading");
+
+    const dashboard =
+      document.getElementById("dashboard");
+
+    const errorBox =
+      document.getElementById("errorBox");
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================== */
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       SHOW ERROR
+    ========================== */
+
+    function showError(message) {
+
+      loading.style.display = "none";
+
+      errorBox.textContent =
+        message;
+
+      errorBox.style.display =
+        "block";
+
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================== */
+
+    function logout() {
+
+      localStorage.removeItem(
+        TOKEN_KEY
+      );
+
+      localStorage.removeItem(
+        USER_KEY
+      );
+
+      localStorage.removeItem(
+        COURSE_KEY
+      );
+
+      window.location.href =
+        "login.html";
+
+    }
+
+
+    /* =========================
+       LOAD DASHBOARD
+    ========================== */
+
+    async function loadDashboard() {
+
+      const token =
+        localStorage.getItem(
+          TOKEN_KEY
+        );
+
+
+      /*
+        No token means the student
+        is not logged in.
+      */
+
+      if (!token) {
+
+        window.location.href =
+          "login.html";
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + "/api/me",
+            {
+              method: "GET",
+
+              headers: {
+                "Authorization":
+                  "Bearer " + token
+              }
+            }
+          );
+
+
+        let result;
+
+        try {
+
+          result =
+            await response.json();
+
+        } catch {
+
+          throw new Error(
+            "The server returned an invalid response."
+          );
+
+        }
+
+
+        if (!response.ok ||
+            !result.success) {
+
+          /*
+            If token expired or is invalid,
+            remove it and send student
+            back to login.
+          */
+
+          if (
+            response.status === 401
+          ) {
+
+            localStorage.removeItem(
+              TOKEN_KEY
+            );
+
+            localStorage.removeItem(
+              USER_KEY
+            );
+
+            window.location.href =
+              "login.html";
+
+            return;
+
+          }
+
+          throw new Error(
+            result.error ||
+            "Unable to load student account."
+          );
+
+        }
+
+
+        const user =
+          result.user;
+
+
+        /*
+          Save the latest user information.
+        */
+
+        localStorage.setItem(
+          USER_KEY,
+          JSON.stringify(user)
+        );
+
+
+        displayUser(user);
+
+        displayCourse();
+
+
+        loading.style.display =
+          "none";
+
+        dashboard.style.display =
+          "block";
+
+
+      } catch (error) {
+
+        console.error(
+          "Dashboard error:",
+          error
+        );
+
+        showError(
+          error.message ||
+          "Unable to connect to the server."
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       DISPLAY USER
+    ========================== */
+
+    function displayUser(user) {
+
+      const name =
+        user.full_name ||
+        "Student";
+
+
+      document.getElementById(
+        "welcomeName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "topWelcome"
+      ).textContent =
+        "Hello, " + name;
+
+
+      document.getElementById(
+        "profileName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "profileUsername"
+      ).textContent =
+        "@" +
+        (user.username || "student");
+
+
+      document.getElementById(
+        "profileEmail"
+      ).textContent =
+        user.email || "—";
+
+
+      document.getElementById(
+        "profileType"
+      ).textContent =
+        user.account_type || "student";
+
+
+      document.getElementById(
+        "profileClass"
+      ).textContent =
+        user.class_level || "Not specified";
+
+
+      if (user.created_at) {
+
+        const date =
+          new Date(
+            user.created_at
+          );
+
+        if (!isNaN(date.getTime())) {
+
+          document.getElementById(
+            "profileDate"
+          ).textContent =
+            date.toLocaleDateString(
+              "en-IN",
+              {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+              }
+            );
+
+        }
+
+      }
+
+
+      /*
+        First letter of student's name
+      */
+
+      const firstLetter =
+        name
+          .trim()
+          .charAt(0)
+          .toUpperCase();
+
+
+      document.getElementById(
+        "avatar"
+      ).textContent =
+        firstLetter || "S";
+
+    }
+
+
+    /* =========================
+       DISPLAY COURSE
+    ========================== */
+
+    function displayCourse() {
+
+      let courseSlug =
+        localStorage.getItem(
+          COURSE_KEY
+        );
+
+
+      /*
+        Sometimes the login page may
+        save the selected course as
+        a complete URL parameter.
+      */
+
+      if (courseSlug) {
+
+        courseSlug =
+          decodeURIComponent(
+            courseSlug
+          );
+
+      }
+
+
+      const course =
+        courses[courseSlug];
+
+
+      if (course) {
+
+        document.getElementById(
+          "courseName"
+        ).textContent =
+          course.name;
+
+
+        document.getElementById(
+          "courseDescription"
+        ).textContent =
+          course.description;
+
+      } else {
+
+        document.getElementById(
+          "courseName"
+        ).textContent =
+          "Study With Deepak";
+
+
+        document.getElementById(
+          "courseDescription"
+        ).textContent =
+          "Your enrolled course and learning materials will appear here.";
+
+      }
+
+    }
+
+
+    /* =========================
+       OPEN COURSE
+    ========================== */
+
+    function openCourse() {
+
+      const courseSlug =
+        localStorage.getItem(
+          COURSE_KEY
+        );
+
+
+      if (courseSlug &&
+          courses[courseSlug]) {
+
+        alert(
+          courses[courseSlug].name +
+          " course area will be connected next."
+        );
+
+      } else {
+
+        alert(
+          "Your course area will be connected next."
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       YEAR
+    ========================== */
+
+    document.getElementById(
+      "year"
+    ).textContent =
+      new Date().getFullYear();
+
+
+    /* =========================
+       START
+    ========================== */
+
+    loadDashboard();
+
+  </script>
+
+</body>
+</html>
+```
